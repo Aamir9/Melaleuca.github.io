@@ -1,0 +1,59 @@
+﻿#bg, .signedInContainer, #navigationContainer, .signedInWrapper, .breadcrumb, #pageContainerGradient, .selectPackReminderMsg, .navContainerWrapper, #debuggingTool-container, .utilityContainer, .headerWrapper, #thankYouHeader, .noPrint {
+    display: none;
+}
+#thankYouBottom, .printReceiptWrapper, .pageContainerBottom, .serviceFloaterWrapper, .reminder .titleLarge, .reminder .reminderEmail, .reminder .reminderText, .reminder .reminderNotSet, .reminder .setupButtonWrapper {
+    visibility: hidden;
+}
+.reminder .shippingDisclaimer {
+    visibility: visible;
+}
+#thankYouContainer {
+    position: absolute;
+    left: 0;
+    top: 0;
+    page-break-after: avoid;
+    page-break-before: avoid;
+    page-break-inside: avoid;
+}
+#thankYouContainer DIV {
+    page-break-after: avoid;
+    page-break-before: avoid;
+    page-break-inside: auto;
+}
+.orderReceiptTableTitle, #orderReceiptTotalsTableTotalSavingsText {
+    border: 1px solid #623500;
+}
+.thankYouWrapper .orderDetail {
+    max-height: 150px;
+}
+.pageContainer .thankYouWrapper .orderDetail .orderDetailLeft, .pageContainer .thankYouWrapper .orderDetail .orderDetailRight {
+    margin-bottom: 0;
+    padding-bottom: 0;
+}
+body .showDirectDepositCheckForPrint {
+    display: block;
+}
+body .monthDetails {
+    -webkit-box-shadow: none;
+    box-shadow: none;
+}
+.receipt-header, .additional-fees-row.grand-total .column.label, .order-receipt-footer .total-savings .label-container, .additional-fees-row .column.lsd-table-header {
+    color: #000;
+}
+.select-pack-header, .content-container .contentDisplay, .order-receipt-footer .print-button, .order-receipt-footer.content-footer {
+    display: none;
+}
+.content-container .purchase-stamp, .order-receipt-footer .total-savings .pointer-overlay {
+    display: inline-block;
+}
+.content-container .logo.no-show {
+    display: block;
+}
+.order-receipt-footer .total-savings {
+    border-color: #000;
+}
+.order-receipt-footer .total-savings .pointer {
+    position: relative;
+    right: 16px;
+    border-left-color: #000;
+}

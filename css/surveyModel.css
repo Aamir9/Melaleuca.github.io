@@ -1,0 +1,339 @@
+    
+
+    .survey-modal {
+        width: 98%;
+        max-width: 500px;
+        height: 300px;
+        margin-left: -250px !important;
+        margin-top: -150px !important;
+        background: #706F65;
+    }
+
+    .survey-modal {
+        position: fixed !important;
+        left: 50%;
+        top: 50%;
+        margin: -147.5px 0 0 -235px;
+        border-radius: 5px;
+    }
+
+    .survey-widget {
+        display: block;
+        margin: 0;
+        padding: 0 !important;
+        position: static;
+        z-index: 999997;
+        font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif;
+        font-weight: 100;
+        font-size: 13px;
+        line-height: 13px;
+        color: black;
+        opacity: 1;
+        transform: translate3d(0,0,0);
+        -webkit-transition: all 300ms ease 0;
+        -moz-transition: all 300ms ease 0;
+        -ms-transition: all 300ms ease 0;
+        -o-transition: all 300ms ease 0;
+        transition: all 300ms ease 0;
+    }
+
+    .survey-modal.survey-hide-branding > .survey-modal-content {
+        height: 280px;
+    }
+
+    .survey-modal > .survey-modal-content {
+        max-width: 480px;
+        height: 255px;
+    }
+
+    .survey-modal-invitation > .survey-modal-content {
+        margin: 10px 10px 0 10px;
+    }
+
+    .survey-modal-content {
+        position: relative;
+        height: 250px;
+        margin: 0;
+        padding: 20px;
+        background: white;
+        -webkit-background-clip: padding-box;
+        -moz-background-clip: padding-box;
+        -webkit-border-radius: 3px;
+        -moz-border-radius: 3px;
+        -ms-border-radius: 3px;
+        border-radius: 3px;
+        background-clip: padding-box;
+        overflow: none;
+    }
+
+    .survey-widget, .survey-widget * {
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        box-sizing: border-box;
+    }
+
+    .survey-widget {
+        display: block;
+        margin: 0;
+        padding: 0 !important;
+        position: static;
+        z-index: 999997;
+        font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif;
+        font-weight: 100;
+        font-size: 13px;
+        line-height: 13px;
+        color: black;
+        opacity: 1;
+        transform: translate3d(0,0,0);
+        -webkit-transition: all 300ms ease 0;
+        -moz-transition: all 300ms ease 0;
+        -ms-transition: all 300ms ease 0;
+        -o-transition: all 300ms ease 0;
+        transition: all 300ms ease 0;
+    }
+
+    .survey-modal-close {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        width: 16px;
+        height: 16px;
+        background: #e8e8e8 url('images/surveyCloseIcon.png') 2px 2px scroll no-repeat;
+        cursor: pointer;
+        -webkit-background-clip: padding-box;
+        -moz-background-clip: padding-box;
+        -webkit-border-radius: 3px;
+        -moz-border-radius: 3px;
+        -ms-border-radius: 3px;
+        border-radius: 3px;
+        background-clip: padding-box;
+        -webkit-transition: background-color 300ms ease 0;
+        -moz-transition: background-color 300ms ease 0;
+        -ms-transition: background-color 300ms ease 0;
+        -o-transition: background-color 300ms ease 0;
+        transition: background-color 300ms ease 0;
+    }
+
+    .survey-widget, .survey-widget * {
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        box-sizing: border-box;
+    }
+
+    .survey-widget {
+        display: block;
+        margin: 0;
+        padding: 0 !important;
+        position: static;
+        z-index: 999997;
+        font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif;
+        font-weight: 100;
+        font-size: 13px;
+        line-height: 13px;
+        color: black;
+        opacity: 1;
+        transform: translate3d(0,0,0);
+        -webkit-transition: all 300ms ease 0;
+        -moz-transition: all 300ms ease 0;
+        -ms-transition: all 300ms ease 0;
+        -o-transition: all 300ms ease 0;
+        transition: all 300ms ease 0;
+    }
+
+    .survey-modal-content > .survey-modal-h1 {
+        margin: 20px 0 15px 0;
+        padding: 0;
+        color: #000;
+        font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif;
+        font-size: 28px;
+        font-weight: normal;
+        line-height: 28px;
+        text-align: center;
+        word-wrap: break-word;
+    }
+
+    .survey-widget, .survey-widget * {
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        box-sizing: border-box;
+    }
+
+    h1 {
+        display: block;
+        font-size: 2em;
+        -webkit-margin-before: 0.67em;
+        -webkit-margin-after: 0.67em;
+        -webkit-margin-start: 0px;
+        -webkit-margin-end: 0px;
+        font-weight: bold;
+    }
+
+    .survey-widget {
+        display: block;
+        margin: 0;
+        padding: 0 !important;
+        position: static;
+        z-index: 999997;
+        font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif;
+        font-weight: 100;
+        font-size: 13px;
+        line-height: 13px;
+        color: black;
+        opacity: 1;
+        transform: translate3d(0,0,0);
+        -webkit-transition: all 300ms ease 0;
+        -moz-transition: all 300ms ease 0;
+        -ms-transition: all 300ms ease 0;
+        -o-transition: all 300ms ease 0;
+        transition: all 300ms ease 0;
+    }
+
+    .survey-modal-content > .survey-modal-p {
+        color: #333;
+        font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif;
+        font-size: 14px;
+        font-weight: normal;
+        line-height: 18px;
+        text-align: center;
+        word-wrap: break-word;
+    }
+
+    .survey-widget, .survey-widget * {
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        box-sizing: border-box;
+    }
+
+    p {
+        display: block;
+        -webkit-margin-before: 1em;
+        -webkit-margin-after: 1em;
+        -webkit-margin-start: 0px;
+        -webkit-margin-end: 0px;
+    }
+
+    .survey-modal-actions {
+        position: absolute;
+        bottom: 10px;
+        left: 0;
+        width: 100%;
+        height: 57px;
+        padding: 10px 20px;
+    }
+
+        .survey-modal-actions > .survey-btn-secondary {
+            background: #bcb8b8;
+            color: #FFF;
+        }
+
+    .survey-pull-left {
+        float: left;
+    }
+
+    .survey-btn-secondary {
+        color: #333;
+        background: #f0f0f0;
+        background: -webkit-gradient(linear,left top,left bottom,from(#f8f8f8),to(#e8e8e8));
+        background: -moz-linear-gradient(center top,#f8f8f8 0,#e8e8e8 100%);
+        background: -moz-gradient(center top,#f8f8f8 0,#e8e8e8 100%);
+        border: 0;
+        -webkit-background-clip: padding-box;
+        -moz-background-clip: padding-box;
+        -webkit-border-radius: 3px;
+        -moz-border-radius: 3px;
+        -ms-border-radius: 3px;
+        border-radius: 3px;
+        background-clip: padding-box;
+    }
+
+    .survey-btn, .survey-btn:hover {
+        text-decoration: none;
+    }
+
+    .survey-btn {
+        display: inline-block;
+        margin-bottom: 0;
+        font-weight: bold;
+        text-align: center;
+        vertical-align: middle;
+        cursor: pointer;
+        background-image: none;
+        border: 1px solid transparent;
+        white-space: nowrap;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+        padding: 8px 14px;
+        font-size: 14px;
+        line-height: 1.42857;
+        -webkit-background-clip: padding-box;
+        -moz-background-clip: padding-box;
+        -webkit-border-radius: 3px;
+        -moz-border-radius: 3px;
+        -ms-border-radius: 3px;
+        border-radius: 3px;
+        background-clip: padding-box;
+    }
+
+    .survey-widget, .survey-widget * {
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        box-sizing: border-box;
+    }
+
+    .survey-modal-actions > .survey-btn-primary {
+        background: #86a23c;
+        color: #FFF;
+    }
+
+    .survey-pull-right {
+        float: right;
+    }
+
+    .survey-btn-primary {
+        color: #FFF;
+        background: #a2be36;
+        background: -webkit-gradient(linear,left top,left bottom,from(#bed830),to(#86a33b));
+        background: -moz-linear-gradient(center top,#bed830 0,#86a33b 100%);
+        background: -moz-gradient(center top,#bed830 0,#86a33b 100%);
+        border: 0;
+    }
+
+    .survey-btn, .survey-btn:hover {
+        text-decoration: none;
+    }
+
+    .survey-btn {
+        display: inline-block;
+        margin-bottom: 0;
+        font-weight: bold;
+        text-align: center;
+        vertical-align: middle;
+        cursor: pointer;
+        background-image: none;
+        border: 1px solid transparent;
+        white-space: nowrap;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+        padding: 8px 14px;
+        font-size: 14px;
+        line-height: 1.42857;
+        -webkit-background-clip: padding-box;
+        -moz-background-clip: padding-box;
+        -webkit-border-radius: 3px;
+        -moz-border-radius: 3px;
+        -ms-border-radius: 3px;
+        border-radius: 3px;
+        background-clip: padding-box;
+    }
+
+    .sm-hide {
+        display: none;
+    }
+
+    .sm-show {
+        display: block;
+    }

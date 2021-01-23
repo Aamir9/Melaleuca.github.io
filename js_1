@@ -1,0 +1,559 @@
+Type.registerNamespace('Melaleuca.Web');
+Melaleuca.Web.AjaxManager=function() {
+Melaleuca.Web.AjaxManager.initializeBase(this);
+this._timeout = 0;
+this._userContext = null;
+this._succeeded = null;
+this._failed = null;
+}
+Melaleuca.Web.AjaxManager.prototype={
+_get_path:function() {
+ var p = this.get_path();
+ if (p) return p;
+ else return Melaleuca.Web.AjaxManager._staticInstance.get_path();},
+CheckPromotionQualifications:function(onConfirmScript,onCancelScript,succeededCallback, failedCallback, userContext) {
+return this._invoke(this._get_path(), 'CheckPromotionQualifications',false,{onConfirmScript:onConfirmScript,onCancelScript:onCancelScript},succeededCallback,failedCallback,userContext); },
+SetLSDOn:function(sku,succeededCallback, failedCallback, userContext) {
+return this._invoke(this._get_path(), 'SetLSDOn',false,{sku:sku},succeededCallback,failedCallback,userContext); },
+SetLSDOff:function(sku,succeededCallback, failedCallback, userContext) {
+return this._invoke(this._get_path(), 'SetLSDOff',false,{sku:sku},succeededCallback,failedCallback,userContext); },
+SetConvenienceOn:function(sku,succeededCallback, failedCallback, userContext) {
+return this._invoke(this._get_path(), 'SetConvenienceOn',false,{sku:sku},succeededCallback,failedCallback,userContext); },
+SetConvenienceOff:function(sku,succeededCallback, failedCallback, userContext) {
+return this._invoke(this._get_path(), 'SetConvenienceOff',false,{sku:sku},succeededCallback,failedCallback,userContext); },
+EmptyCart:function(succeededCallback, failedCallback, userContext) {
+return this._invoke(this._get_path(), 'EmptyCart',false,{},succeededCallback,failedCallback,userContext); },
+GetBOGOOfferAddedRenderedJavaScript:function(responseHTML,succeededCallback, failedCallback, userContext) {
+return this._invoke(this._get_path(), 'GetBOGOOfferAddedRenderedJavaScript',false,{responseHTML:responseHTML},succeededCallback,failedCallback,userContext); },
+GetBOGOMaxQtyInCartControlRefreshJavaScript:function(promotionID,sku,maxQty,succeededCallback, failedCallback, userContext) {
+return this._invoke(this._get_path(), 'GetBOGOMaxQtyInCartControlRefreshJavaScript',false,{promotionID:promotionID,sku:sku,maxQty:maxQty},succeededCallback,failedCallback,userContext); },
+UpdateBogoItemStateInCartAndUI:function(sku,promotionID,qty,promotions,succeededCallback, failedCallback, userContext) {
+return this._invoke(this._get_path(), 'UpdateBogoItemStateInCartAndUI',false,{sku:sku,promotionID:promotionID,qty:qty,promotions:promotions},succeededCallback,failedCallback,userContext); },
+PurchaseBusinessKit:function(businessKitSku,succeededCallback, failedCallback, userContext) {
+return this._invoke(this._get_path(), 'PurchaseBusinessKit',false,{businessKitSku:businessKitSku},succeededCallback,failedCallback,userContext); },
+UpdateBusinessKit:function(businessKitSku,succeededCallback, failedCallback, userContext) {
+return this._invoke(this._get_path(), 'UpdateBusinessKit',false,{businessKitSku:businessKitSku},succeededCallback,failedCallback,userContext); },
+AddOrRemoveSelectedLsdSkuInSession:function(sku,parentSku,isAdd,succeededCallback, failedCallback, userContext) {
+return this._invoke(this._get_path(), 'AddOrRemoveSelectedLsdSkuInSession',false,{sku:sku,parentSku:parentSku,isAdd:isAdd},succeededCallback,failedCallback,userContext); },
+ShipAddress_OnChange:function(addressID,shipMethodDescription,succeededCallback, failedCallback, userContext) {
+return this._invoke(this._get_path(), 'ShipAddress_OnChange',false,{addressID:addressID,shipMethodDescription:shipMethodDescription},succeededCallback,failedCallback,userContext); },
+ShipMethod_OnChange:function(addressID,shipMethodDescription,succeededCallback, failedCallback, userContext) {
+return this._invoke(this._get_path(), 'ShipMethod_OnChange',false,{addressID:addressID,shipMethodDescription:shipMethodDescription},succeededCallback,failedCallback,userContext); },
+AcceptSubstitution:function(subSku,qty,addSource,originalSku,originalLineTypeId,inNextOrderIden,succeededCallback, failedCallback, userContext) {
+return this._invoke(this._get_path(), 'AcceptSubstitution',false,{subSku:subSku,qty:qty,addSource:addSource,originalSku:originalSku,originalLineTypeId:originalLineTypeId,inNextOrderIden:inNextOrderIden},succeededCallback,failedCallback,userContext); },
+AcceptKitSubstitution:function(subSku,configurations,addSource,originalSku,originalLineTypeId,inNextOrderIden,succeededCallback, failedCallback, userContext) {
+return this._invoke(this._get_path(), 'AcceptKitSubstitution',false,{subSku:subSku,configurations:configurations,addSource:addSource,originalSku:originalSku,originalLineTypeId:originalLineTypeId,inNextOrderIden:inNextOrderIden},succeededCallback,failedCallback,userContext); },
+RemoveNoFly:function(originalSku,originalLineTypeId,inNextOrderIden,succeededCallback, failedCallback, userContext) {
+return this._invoke(this._get_path(), 'RemoveNoFly',false,{originalSku:originalSku,originalLineTypeId:originalLineTypeId,inNextOrderIden:inNextOrderIden},succeededCallback,failedCallback,userContext); },
+LoadVirtualPayMethod:function(paymethodID,succeededCallback, failedCallback, userContext) {
+return this._invoke(this._get_path(), 'LoadVirtualPayMethod',false,{paymethodID:paymethodID},succeededCallback,failedCallback,userContext); },
+DisplayExtendedPromotion:function(containerID,succeededCallback, failedCallback, userContext) {
+return this._invoke(this._get_path(), 'DisplayExtendedPromotion',false,{containerID:containerID},succeededCallback,failedCallback,userContext); },
+PopulateCustomerPromotionsInSession:function(succeededCallback, failedCallback, userContext) {
+return this._invoke(this._get_path(), 'PopulateCustomerPromotionsInSession',false,{},succeededCallback,failedCallback,userContext); },
+GetAvailablePromotions:function(promotionLocation,succeededCallback, failedCallback, userContext) {
+return this._invoke(this._get_path(), 'GetAvailablePromotions',false,{promotionLocation:promotionLocation},succeededCallback,failedCallback,userContext); },
+GetBusinessKitPromotion:function(succeededCallback, failedCallback, userContext) {
+return this._invoke(this._get_path(), 'GetBusinessKitPromotion',false,{},succeededCallback,failedCallback,userContext); },
+ProcessBulkPromotionAdd:function(promotionID,bulkObject,refreshMiniCart,succeededCallback, failedCallback, userContext) {
+return this._invoke(this._get_path(), 'ProcessBulkPromotionAdd',false,{promotionID:promotionID,bulkObject:bulkObject,refreshMiniCart:refreshMiniCart},succeededCallback,failedCallback,userContext); },
+ProcessFlashPromotion:function(promotionID,sku,qty,succeededCallback, failedCallback, userContext) {
+return this._invoke(this._get_path(), 'ProcessFlashPromotion',false,{promotionID:promotionID,sku:sku,qty:qty},succeededCallback,failedCallback,userContext); },
+ProcessPromotionBySku:function(promotionID,sku,qty,promoAddActionIndex,succeededCallback, failedCallback, userContext) {
+return this._invoke(this._get_path(), 'ProcessPromotionBySku',false,{promotionID:promotionID,sku:sku,qty:qty,promoAddActionIndex:promoAddActionIndex},succeededCallback,failedCallback,userContext); },
+ProcessPromotionForRegularProduct:function(promotionId,sku,qty,promoAddActionIndex,succeededCallback, failedCallback, userContext) {
+return this._invoke(this._get_path(), 'ProcessPromotionForRegularProduct',false,{promotionId:promotionId,sku:sku,qty:qty,promoAddActionIndex:promoAddActionIndex},succeededCallback,failedCallback,userContext); },
+ProcessBogoPromotion:function(promotionId,sku,qty,promoAddActionIndex,promotions,succeededCallback, failedCallback, userContext) {
+return this._invoke(this._get_path(), 'ProcessBogoPromotion',false,{promotionId:promotionId,sku:sku,qty:qty,promoAddActionIndex:promoAddActionIndex,promotions:promotions},succeededCallback,failedCallback,userContext); },
+ProcessPromotion:function(promotionId,qty,promoAddActionIndex,revenueSource,afterClickDelegate,succeededCallback, failedCallback, userContext) {
+return this._invoke(this._get_path(), 'ProcessPromotion',false,{promotionId:promotionId,qty:qty,promoAddActionIndex:promoAddActionIndex,revenueSource:revenueSource,afterClickDelegate:afterClickDelegate},succeededCallback,failedCallback,userContext); },
+ProcessKitPromotion:function(promotionId,sku,qty,configurationArray,promoAddActionIndex,promoSource,addSingleKit,succeededCallback, failedCallback, userContext) {
+return this._invoke(this._get_path(), 'ProcessKitPromotion',false,{promotionId:promotionId,sku:sku,qty:qty,configurationArray:configurationArray,promoAddActionIndex:promoAddActionIndex,promoSource:promoSource,addSingleKit:addSingleKit},succeededCallback,failedCallback,userContext); },
+ProcessCouponPromotion:function(couponCode,displayLocationUrl,succeededCallback, failedCallback, userContext) {
+return this._invoke(this._get_path(), 'ProcessCouponPromotion',false,{couponCode:couponCode,displayLocationUrl:displayLocationUrl},succeededCallback,failedCallback,userContext); },
+ProcessCouponPromotionWithAddSource:function(couponCode,displayLocationUrl,addSource,succeededCallback, failedCallback, userContext) {
+return this._invoke(this._get_path(), 'ProcessCouponPromotionWithAddSource',false,{couponCode:couponCode,displayLocationUrl:displayLocationUrl,addSource:addSource},succeededCallback,failedCallback,userContext); },
+ProcessExternalCouponPromotion:function(couponCode,displayLocationUrl,succeededCallback, failedCallback, userContext) {
+return this._invoke(this._get_path(), 'ProcessExternalCouponPromotion',false,{couponCode:couponCode,displayLocationUrl:displayLocationUrl},succeededCallback,failedCallback,userContext); },
+RemovePromotion:function(promotionId,redirectToCheckout,succeededCallback, failedCallback, userContext) {
+return this._invoke(this._get_path(), 'RemovePromotion',false,{promotionId:promotionId,redirectToCheckout:redirectToCheckout},succeededCallback,failedCallback,userContext); },
+DeclinePromotionFromWebButton:function(promotionId,redirectToCheckout,succeededCallback, failedCallback, userContext) {
+return this._invoke(this._get_path(), 'DeclinePromotionFromWebButton',false,{promotionId:promotionId,redirectToCheckout:redirectToCheckout},succeededCallback,failedCallback,userContext); },
+RemovePromotions:function(promotionIDs,succeededCallback, failedCallback, userContext) {
+return this._invoke(this._get_path(), 'RemovePromotions',false,{promotionIDs:promotionIDs},succeededCallback,failedCallback,userContext); },
+RemoveAvailablePromotions:function(promotionIDs,promotionLocation,succeededCallback, failedCallback, userContext) {
+return this._invoke(this._get_path(), 'RemoveAvailablePromotions',false,{promotionIDs:promotionIDs,promotionLocation:promotionLocation},succeededCallback,failedCallback,userContext); },
+MyFavoriteList:function(succeededCallback, failedCallback, userContext) {
+return this._invoke(this._get_path(), 'MyFavoriteList',false,{},succeededCallback,failedCallback,userContext); },
+RemoveFromFavorites:function(sku,succeededCallback, failedCallback, userContext) {
+return this._invoke(this._get_path(), 'RemoveFromFavorites',false,{sku:sku},succeededCallback,failedCallback,userContext); },
+AddProductToFavorites:function(sku,succeededCallback, failedCallback, userContext) {
+return this._invoke(this._get_path(), 'AddProductToFavorites',false,{sku:sku},succeededCallback,failedCallback,userContext); },
+GetSelectedOwingBalance:function(orderIDList,balanceContainerID,formID,indexID,selectID,buttonID,succeededCallback, failedCallback, userContext) {
+return this._invoke(this._get_path(), 'GetSelectedOwingBalance',false,{orderIDList:orderIDList,balanceContainerID:balanceContainerID,formID:formID,indexID:indexID,selectID:selectID,buttonID:buttonID},succeededCallback,failedCallback,userContext); },
+ShowAddressLiteSearch:function(screen,containerID,jsObject,parentJsObject,succeededCallback, failedCallback, userContext) {
+return this._invoke(this._get_path(), 'ShowAddressLiteSearch',false,{screen:screen,containerID:containerID,jsObject:jsObject,parentJsObject:parentJsObject},succeededCallback,failedCallback,userContext); },
+BankSearchReturn:function(searchString,country,succeededCallback, failedCallback, userContext) {
+return this._invoke(this._get_path(), 'BankSearchReturn',false,{searchString:searchString,country:country},succeededCallback,failedCallback,userContext); },
+LogError:function(message,source,severity,succeededCallback, failedCallback, userContext) {
+return this._invoke(this._get_path(), 'LogError',false,{message:message,source:source,severity:severity},succeededCallback,failedCallback,userContext); },
+RevertBackDating:function(redirectUrl,succeededCallback, failedCallback, userContext) {
+return this._invoke(this._get_path(), 'RevertBackDating',false,{redirectUrl:redirectUrl},succeededCallback,failedCallback,userContext); },
+UpdateMelelucaEmailAndUsername:function(CustomerID,Email,succeededCallback, failedCallback, userContext) {
+return this._invoke(this._get_path(), 'UpdateMelelucaEmailAndUsername',false,{CustomerID:CustomerID,Email:Email},succeededCallback,failedCallback,userContext); },
+BackDateAction:function(isBackDating,isConfirmed,succeededCallback, failedCallback, userContext) {
+return this._invoke(this._get_path(), 'BackDateAction',false,{isBackDating:isBackDating,isConfirmed:isConfirmed},succeededCallback,failedCallback,userContext); },
+ResetBackDatePrompt:function(succeededCallback, failedCallback, userContext) {
+return this._invoke(this._get_path(), 'ResetBackDatePrompt',false,{},succeededCallback,failedCallback,userContext); },
+UpgradeHealthCareServiceLevel:function(currentServiceLevel,beneficiaryName,succeededCallback, failedCallback, userContext) {
+return this._invoke(this._get_path(), 'UpgradeHealthCareServiceLevel',false,{currentServiceLevel:currentServiceLevel,beneficiaryName:beneficiaryName},succeededCallback,failedCallback,userContext); },
+SelectCountryCulture:function(selectedValue,succeededCallback, failedCallback, userContext) {
+return this._invoke(this._get_path(), 'SelectCountryCulture',false,{selectedValue:selectedValue},succeededCallback,failedCallback,userContext); },
+UpdateNotificationContacts:function(newEmail,newMobilePhoneNumber,succeededCallback, failedCallback, userContext) {
+return this._invoke(this._get_path(), 'UpdateNotificationContacts',false,{newEmail:newEmail,newMobilePhoneNumber:newMobilePhoneNumber},succeededCallback,failedCallback,userContext); },
+SendVflChallengeEmail:function(succeededCallback, failedCallback, userContext) {
+return this._invoke(this._get_path(), 'SendVflChallengeEmail',false,{},succeededCallback,failedCallback,userContext); },
+ProcessContentForm:function(paramList,succeededCallback, failedCallback, userContext) {
+return this._invoke(this._get_path(), 'ProcessContentForm',false,{paramList:paramList},succeededCallback,failedCallback,userContext); },
+DisplayContent:function(pageName,displayLocation,displayContainerName,includePromotions,succeededCallback, failedCallback, userContext) {
+return this._invoke(this._get_path(), 'DisplayContent',false,{pageName:pageName,displayLocation:displayLocation,displayContainerName:displayContainerName,includePromotions:includePromotions},succeededCallback,failedCallback,userContext); },
+GetContentPage:function(pageName,succeededCallback, failedCallback, userContext) {
+return this._invoke(this._get_path(), 'GetContentPage',false,{pageName:pageName},succeededCallback,failedCallback,userContext); },
+DisplayPromotionContentByID:function(promoID,location,displayContainerName,promoLocation,updatePromotionViewed,succeededCallback, failedCallback, userContext) {
+return this._invoke(this._get_path(), 'DisplayPromotionContentByID',false,{promoID:promoID,location:location,displayContainerName:displayContainerName,promoLocation:promoLocation,updatePromotionViewed:updatePromotionViewed},succeededCallback,failedCallback,userContext); },
+DisplayAutoAcceptancePromotionContentById:function(promoID,location,displayContainerName,promoLocation,updatePromotionViewed,succeededCallback, failedCallback, userContext) {
+return this._invoke(this._get_path(), 'DisplayAutoAcceptancePromotionContentById',false,{promoID:promoID,location:location,displayContainerName:displayContainerName,promoLocation:promoLocation,updatePromotionViewed:updatePromotionViewed},succeededCallback,failedCallback,userContext); },
+GetSurveyScript:function(succeededCallback, failedCallback, userContext) {
+return this._invoke(this._get_path(), 'GetSurveyScript',false,{},succeededCallback,failedCallback,userContext); },
+RequestPasswordReset:function(username,succeededCallback, failedCallback, userContext) {
+return this._invoke(this._get_path(), 'RequestPasswordReset',false,{username:username},succeededCallback,failedCallback,userContext); },
+RequestUsername:function(email,succeededCallback, failedCallback, userContext) {
+return this._invoke(this._get_path(), 'RequestUsername',false,{email:email},succeededCallback,failedCallback,userContext); },
+RequestUsernameByBusinessPhone:function(email,businessPhone,succeededCallback, failedCallback, userContext) {
+return this._invoke(this._get_path(), 'RequestUsernameByBusinessPhone',false,{email:email,businessPhone:businessPhone},succeededCallback,failedCallback,userContext); },
+RequestPassword:function(email,succeededCallback, failedCallback, userContext) {
+return this._invoke(this._get_path(), 'RequestPassword',false,{email:email},succeededCallback,failedCallback,userContext); },
+CanPersonViewVideo:function(videoId,emailAddress,succeededCallback, failedCallback, userContext) {
+return this._invoke(this._get_path(), 'CanPersonViewVideo',false,{videoId:videoId,emailAddress:emailAddress},succeededCallback,failedCallback,userContext); },
+ProcessFollowUp:function(enrollee,followUpAction,succeededCallback, failedCallback, userContext) {
+return this._invoke(this._get_path(), 'ProcessFollowUp',false,{enrollee:enrollee,followUpAction:followUpAction},succeededCallback,failedCallback,userContext); },
+SendPrimerContactoEmailLead:function(succeededCallback, failedCallback, userContext) {
+return this._invoke(this._get_path(), 'SendPrimerContactoEmailLead',false,{},succeededCallback,failedCallback,userContext); },
+CreateOnlineAccount:function(phoneNumber,emailAddress,ipAddress,succeededCallback, failedCallback, userContext) {
+return this._invoke(this._get_path(), 'CreateOnlineAccount',false,{phoneNumber:phoneNumber,emailAddress:emailAddress,ipAddress:ipAddress},succeededCallback,failedCallback,userContext); },
+ValidateAndSavePasswordRequest:function(gid,newPassword,confirmPassword,succeededCallback, failedCallback, userContext) {
+return this._invoke(this._get_path(), 'ValidateAndSavePasswordRequest',false,{gid:gid,newPassword:newPassword,confirmPassword:confirmPassword},succeededCallback,failedCallback,userContext); },
+FindContact:function(PhoneNumber,LastName,IsOrgSearch,TeamID,succeededCallback, failedCallback, userContext) {
+return this._invoke(this._get_path(), 'FindContact',false,{PhoneNumber:PhoneNumber,LastName:LastName,IsOrgSearch:IsOrgSearch,TeamID:TeamID},succeededCallback,failedCallback,userContext); },
+FindContact2:function(PhoneNumber,IsOrgSearch,Parameter1,succeededCallback, failedCallback, userContext) {
+return this._invoke(this._get_path(), 'FindContact2',false,{PhoneNumber:PhoneNumber,IsOrgSearch:IsOrgSearch,Parameter1:Parameter1},succeededCallback,failedCallback,userContext); },
+FindContact_AllowSelf:function(PhoneNumber,IsOrgSearch,Parameter1,succeededCallback, failedCallback, userContext) {
+return this._invoke(this._get_path(), 'FindContact_AllowSelf',false,{PhoneNumber:PhoneNumber,IsOrgSearch:IsOrgSearch,Parameter1:Parameter1},succeededCallback,failedCallback,userContext); },
+SendCheer:function(CustomerID,CustomerName,cheerMessage,succeededCallback, failedCallback, userContext) {
+return this._invoke(this._get_path(), 'SendCheer',false,{CustomerID:CustomerID,CustomerName:CustomerName,cheerMessage:cheerMessage},succeededCallback,failedCallback,userContext); },
+DeleteCheer:function(customerID,cheerID,succeededCallback, failedCallback, userContext) {
+return this._invoke(this._get_path(), 'DeleteCheer',false,{customerID:customerID,cheerID:cheerID},succeededCallback,failedCallback,userContext); },
+GetNECContent:function(ManagerCustomerID,LevelNumber,succeededCallback, failedCallback, userContext) {
+return this._invoke(this._get_path(), 'GetNECContent',false,{ManagerCustomerID:ManagerCustomerID,LevelNumber:LevelNumber},succeededCallback,failedCallback,userContext); },
+ValidateSwap:function(CustomerID,succeededCallback, failedCallback, userContext) {
+return this._invoke(this._get_path(), 'ValidateSwap',false,{CustomerID:CustomerID},succeededCallback,failedCallback,userContext); },
+ValidateCustomer:function(CustomerID,succeededCallback, failedCallback, userContext) {
+return this._invoke(this._get_path(), 'ValidateCustomer',false,{CustomerID:CustomerID},succeededCallback,failedCallback,userContext); },
+ValidateSwapRules:function(SwapACustomerID,SwapBCustomerID,amountToCharge,succeededCallback, failedCallback, userContext) {
+return this._invoke(this._get_path(), 'ValidateSwapRules',false,{SwapACustomerID:SwapACustomerID,SwapBCustomerID:SwapBCustomerID,amountToCharge:amountToCharge},succeededCallback,failedCallback,userContext); },
+ValidateMoveTarget:function(moveUnderCustomerID,customerIDToMove,amountToCharge,succeededCallback, failedCallback, userContext) {
+return this._invoke(this._get_path(), 'ValidateMoveTarget',false,{moveUnderCustomerID:moveUnderCustomerID,customerIDToMove:customerIDToMove,amountToCharge:amountToCharge},succeededCallback,failedCallback,userContext); },
+AddMoreSubscription:function(succeededCallback, failedCallback, userContext) {
+return this._invoke(this._get_path(), 'AddMoreSubscription',false,{},succeededCallback,failedCallback,userContext); },
+ResendEmailDialog:function(activeEnrollmentID,containerID,htmlContainerID,succeededCallback, failedCallback, userContext) {
+return this._invoke(this._get_path(), 'ResendEmailDialog',false,{activeEnrollmentID:activeEnrollmentID,containerID:containerID,htmlContainerID:htmlContainerID},succeededCallback,failedCallback,userContext); },
+ResendEmail:function(activeEnrollmentID,email,succeededCallback, failedCallback, userContext) {
+return this._invoke(this._get_path(), 'ResendEmail',false,{activeEnrollmentID:activeEnrollmentID,email:email},succeededCallback,failedCallback,userContext); },
+SetCustomerSearchSelection:function(melaleucaID,couponElementObject_Client,succeededCallback, failedCallback, userContext) {
+return this._invoke(this._get_path(), 'SetCustomerSearchSelection',false,{melaleucaID:melaleucaID,couponElementObject_Client:couponElementObject_Client},succeededCallback,failedCallback,userContext); },
+RefreshOrderSummary:function(frequency,index,succeededCallback, failedCallback, userContext) {
+return this._invoke(this._get_path(), 'RefreshOrderSummary',false,{frequency:frequency,index:index},succeededCallback,failedCallback,userContext); },
+IsCustomerMinorInAge:function(day,month,year,succeededCallback, failedCallback, userContext) {
+return this._invoke(this._get_path(), 'IsCustomerMinorInAge',false,{day:day,month:month,year:year},succeededCallback,failedCallback,userContext); },
+UpdateFamilyMemberOnBirthdateChange:function(day,month,year,succeededCallback, failedCallback, userContext) {
+return this._invoke(this._get_path(), 'UpdateFamilyMemberOnBirthdateChange',false,{day:day,month:month,year:year},succeededCallback,failedCallback,userContext); },
+RenderPlanSelectorControl:function(memberType,succeededCallback, failedCallback, userContext) {
+return this._invoke(this._get_path(), 'RenderPlanSelectorControl',false,{memberType:memberType},succeededCallback,failedCallback,userContext); },
+SetPrimaryLifeLockPlan:function(planType,frequencyType,succeededCallback, failedCallback, userContext) {
+return this._invoke(this._get_path(), 'SetPrimaryLifeLockPlan',false,{planType:planType,frequencyType:frequencyType},succeededCallback,failedCallback,userContext); },
+SetFamilyMemberLifeLockPlan:function(planType,frequencyType,succeededCallback, failedCallback, userContext) {
+return this._invoke(this._get_path(), 'SetFamilyMemberLifeLockPlan',false,{planType:planType,frequencyType:frequencyType},succeededCallback,failedCallback,userContext); },
+SetMobilePhoneNumber:function(mobileNumber,succeededCallback, failedCallback, userContext) {
+return this._invoke(this._get_path(), 'SetMobilePhoneNumber',false,{mobileNumber:mobileNumber},succeededCallback,failedCallback,userContext); },
+MobilePhoneNumberOptOut:function(succeededCallback, failedCallback, userContext) {
+return this._invoke(this._get_path(), 'MobilePhoneNumberOptOut',false,{},succeededCallback,failedCallback,userContext); },
+ChangeEmailAddress:function(newEmailAddress,confirmedNewEmailAddress,succeededCallback, failedCallback, userContext) {
+return this._invoke(this._get_path(), 'ChangeEmailAddress',false,{newEmailAddress:newEmailAddress,confirmedNewEmailAddress:confirmedNewEmailAddress},succeededCallback,failedCallback,userContext); },
+SendWebSuspendBenefitsRequestEmail:function(succeededCallback, failedCallback, userContext) {
+return this._invoke(this._get_path(), 'SendWebSuspendBenefitsRequestEmail',false,{},succeededCallback,failedCallback,userContext); },
+SaveCancelBenefitsDesiredReturnDays:function(requestedDayCount,succeededCallback, failedCallback, userContext) {
+return this._invoke(this._get_path(), 'SaveCancelBenefitsDesiredReturnDays',false,{requestedDayCount:requestedDayCount},succeededCallback,failedCallback,userContext); },
+SaveCancelBenefitsFeedback:function(questionKey,cancelBenefitsFeedback,succeededCallback, failedCallback, userContext) {
+return this._invoke(this._get_path(), 'SaveCancelBenefitsFeedback',false,{questionKey:questionKey,cancelBenefitsFeedback:cancelBenefitsFeedback},succeededCallback,failedCallback,userContext); },
+RecordCancelFormPrint:function(succeededCallback, failedCallback, userContext) {
+return this._invoke(this._get_path(), 'RecordCancelFormPrint',false,{},succeededCallback,failedCallback,userContext); },
+CustomerVerifiedIntentToCancel:function(succeededCallback, failedCallback, userContext) {
+return this._invoke(this._get_path(), 'CustomerVerifiedIntentToCancel',false,{},succeededCallback,failedCallback,userContext); },
+CustomerAbandonedCancelProcess:function(succeededCallback, failedCallback, userContext) {
+return this._invoke(this._get_path(), 'CustomerAbandonedCancelProcess',false,{},succeededCallback,failedCallback,userContext); },
+CustomerAbandonedCancelProcessForLoyalty:function(succeededCallback, failedCallback, userContext) {
+return this._invoke(this._get_path(), 'CustomerAbandonedCancelProcessForLoyalty',false,{},succeededCallback,failedCallback,userContext); },
+CancelPageAlternateSignOnSuccessful:function(succeededCallback, failedCallback, userContext) {
+return this._invoke(this._get_path(), 'CancelPageAlternateSignOnSuccessful',false,{},succeededCallback,failedCallback,userContext); },
+CancelPageSignOnSuccessful:function(succeededCallback, failedCallback, userContext) {
+return this._invoke(this._get_path(), 'CancelPageSignOnSuccessful',false,{},succeededCallback,failedCallback,userContext); },
+SaveCancelBenefitsSupplementalData:function(suppplementalData,succeededCallback, failedCallback, userContext) {
+return this._invoke(this._get_path(), 'SaveCancelBenefitsSupplementalData',false,{suppplementalData:suppplementalData},succeededCallback,failedCallback,userContext); },
+GetCancelBenefitsSupplementalData:function(succeededCallback, failedCallback, userContext) {
+return this._invoke(this._get_path(), 'GetCancelBenefitsSupplementalData',false,{},succeededCallback,failedCallback,userContext); },
+AddNewCustomerCancelFeedbackWeb:function(succeededCallback, failedCallback, userContext) {
+return this._invoke(this._get_path(), 'AddNewCustomerCancelFeedbackWeb',false,{},succeededCallback,failedCallback,userContext); },
+GetFaqItemsBySubCategoryID:function(id,container,succeededCallback, failedCallback, userContext) {
+return this._invoke(this._get_path(), 'GetFaqItemsBySubCategoryID',false,{id:id,container:container},succeededCallback,failedCallback,userContext); },
+RenderCouponControl:function(isReminderDateSet,HasCoupons,succeededCallback, failedCallback, userContext) {
+return this._invoke(this._get_path(), 'RenderCouponControl',false,{isReminderDateSet:isReminderDateSet,HasCoupons:HasCoupons},succeededCallback,failedCallback,userContext); },
+DefaultMediaListPagination:function(lastPage,isNextPage,uniqueIdentifier,menuPath,succeededCallback, failedCallback, userContext) {
+return this._invoke(this._get_path(), 'DefaultMediaListPagination',false,{lastPage:lastPage,isNextPage:isNextPage,uniqueIdentifier:uniqueIdentifier,menuPath:menuPath},succeededCallback,failedCallback,userContext); },
+UpdateEmailReminder:function(emailReminderDay,succeededCallback, failedCallback, userContext) {
+return this._invoke(this._get_path(), 'UpdateEmailReminder',false,{emailReminderDay:emailReminderDay},succeededCallback,failedCallback,userContext); },
+UpdateOrderEmailReminderCouponFlag:function(hasCouponFlag,succeededCallback, failedCallback, userContext) {
+return this._invoke(this._get_path(), 'UpdateOrderEmailReminderCouponFlag',false,{hasCouponFlag:hasCouponFlag},succeededCallback,failedCallback,userContext); },
+DumpToCart:function(promoID,microcosm,succeededCallback, failedCallback, userContext) {
+return this._invoke(this._get_path(), 'DumpToCart',false,{promoID:promoID,microcosm:microcosm},succeededCallback,failedCallback,userContext); },
+CheckUsername:function(username,paramCountry,succeededCallback, failedCallback, userContext) {
+return this._invoke(this._get_path(), 'CheckUsername',false,{username:username,paramCountry:paramCountry},succeededCallback,failedCallback,userContext); },
+AddOligoStoryRatingByStoryID:function(isHelpful,id,succeededCallback, failedCallback, userContext) {
+return this._invoke(this._get_path(), 'AddOligoStoryRatingByStoryID',false,{isHelpful:isHelpful,id:id},succeededCallback,failedCallback,userContext); },
+AddProductToCart:function(sku,qty,addSource,originalLineTypeId,succeededCallback, failedCallback, userContext) {
+return this._invoke(this._get_path(), 'AddProductToCart',false,{sku:sku,qty:qty,addSource:addSource,originalLineTypeId:originalLineTypeId},succeededCallback,failedCallback,userContext); },
+AddProductToCartWithLsd:function(sku,qty,addSource,originalLineTypeId,succeededCallback, failedCallback, userContext) {
+return this._invoke(this._get_path(), 'AddProductToCartWithLsd',false,{sku:sku,qty:qty,addSource:addSource,originalLineTypeId:originalLineTypeId},succeededCallback,failedCallback,userContext); },
+AddProductToCartWithConvenienceCert:function(sku,qty,addSource,originalLineTypeId,succeededCallback, failedCallback, userContext) {
+return this._invoke(this._get_path(), 'AddProductToCartWithConvenienceCert',false,{sku:sku,qty:qty,addSource:addSource,originalLineTypeId:originalLineTypeId},succeededCallback,failedCallback,userContext); },
+RenderAddToCartPlaceholders:function(skuList,isCompact,revenueSource,succeededCallback, failedCallback, userContext) {
+return this._invoke(this._get_path(), 'RenderAddToCartPlaceholders',false,{skuList:skuList,isCompact:isCompact,revenueSource:revenueSource},succeededCallback,failedCallback,userContext); },
+AddProductToCartQuickShop:function(sku,qty,isQtyOverride,succeededCallback, failedCallback, userContext) {
+return this._invoke(this._get_path(), 'AddProductToCartQuickShop',false,{sku:sku,qty:qty,isQtyOverride:isQtyOverride},succeededCallback,failedCallback,userContext); },
+RemoveProductFromCart:function(sku,lineTypeID,inoIden,linkID,succeededCallback, failedCallback, userContext) {
+return this._invoke(this._get_path(), 'RemoveProductFromCart',false,{sku:sku,lineTypeID:lineTypeID,inoIden:inoIden,linkID:linkID},succeededCallback,failedCallback,userContext); },
+RemoveBogoPromotionFromCart:function(sku,lineTypeIden,configurationIndex,isKit,promotionId,qty,promotions,succeededCallback, failedCallback, userContext) {
+return this._invoke(this._get_path(), 'RemoveBogoPromotionFromCart',false,{sku:sku,lineTypeIden:lineTypeIden,configurationIndex:configurationIndex,isKit:isKit,promotionId:promotionId,qty:qty,promotions:promotions},succeededCallback,failedCallback,userContext); },
+RemovePromotionFromCart:function(sku,lineTypeIden,configurationIndex,isKit,succeededCallback, failedCallback, userContext) {
+return this._invoke(this._get_path(), 'RemovePromotionFromCart',false,{sku:sku,lineTypeIden:lineTypeIden,configurationIndex:configurationIndex,isKit:isKit},succeededCallback,failedCallback,userContext); },
+RemoveKitConfigFromCart:function(sku,lineTypeIden,configurationIndex,succeededCallback, failedCallback, userContext) {
+return this._invoke(this._get_path(), 'RemoveKitConfigFromCart',false,{sku:sku,lineTypeIden:lineTypeIden,configurationIndex:configurationIndex},succeededCallback,failedCallback,userContext); },
+DuplicateKitConfigFromCart:function(sku,lineTypeIden,configurationIndex,succeededCallback, failedCallback, userContext) {
+return this._invoke(this._get_path(), 'DuplicateKitConfigFromCart',false,{sku:sku,lineTypeIden:lineTypeIden,configurationIndex:configurationIndex},succeededCallback,failedCallback,userContext); },
+AddMultipleKitsToCart:function(sku,source,configurationArray,lineTypeIden,promotionID,succeededCallback, failedCallback, userContext) {
+return this._invoke(this._get_path(), 'AddMultipleKitsToCart',false,{sku:sku,source:source,configurationArray:configurationArray,lineTypeIden:lineTypeIden,promotionID:promotionID},succeededCallback,failedCallback,userContext); },
+AddKitToCart:function(sku,source,configuration,isEdit,lineTypeIden,configurationIndex,promotionID,succeededCallback, failedCallback, userContext) {
+return this._invoke(this._get_path(), 'AddKitToCart',false,{sku:sku,source:source,configuration:configuration,isEdit:isEdit,lineTypeIden:lineTypeIden,configurationIndex:configurationIndex,promotionID:promotionID},succeededCallback,failedCallback,userContext); },
+AddProductToCartBySkuList:function(skuList,source,succeededCallback, failedCallback, userContext) {
+return this._invoke(this._get_path(), 'AddProductToCartBySkuList',false,{skuList:skuList,source:source},succeededCallback,failedCallback,userContext); },
+AddProductBundleToCart:function(skuList,parentKitSku,source,lineTypeIden,promotionID,succeededCallback, failedCallback, userContext) {
+return this._invoke(this._get_path(), 'AddProductBundleToCart',false,{skuList:skuList,parentKitSku:parentKitSku,source:source,lineTypeIden:lineTypeIden,promotionID:promotionID},succeededCallback,failedCallback,userContext); },
+UpdateProductsInCartBySkuList:function(skuList,source,overrideQty,promotionID,succeededCallback, failedCallback, userContext) {
+return this._invoke(this._get_path(), 'UpdateProductsInCartBySkuList',false,{skuList:skuList,source:source,overrideQty:overrideQty,promotionID:promotionID},succeededCallback,failedCallback,userContext); },
+AddLSDPromoToCart:function(skuListRemove,skuListAdd,pageName,succeededCallback, failedCallback, userContext) {
+return this._invoke(this._get_path(), 'AddLSDPromoToCart',false,{skuListRemove:skuListRemove,skuListAdd:skuListAdd,pageName:pageName},succeededCallback,failedCallback,userContext); },
+AddLSDPromoSku:function(skuList,succeededCallback, failedCallback, userContext) {
+return this._invoke(this._get_path(), 'AddLSDPromoSku',false,{skuList:skuList},succeededCallback,failedCallback,userContext); },
+GetCartCount:function(succeededCallback, failedCallback, userContext) {
+return this._invoke(this._get_path(), 'GetCartCount',false,{},succeededCallback,failedCallback,userContext); },
+MyCartListWithCartCount:function(succeededCallback, failedCallback, userContext) {
+return this._invoke(this._get_path(), 'MyCartListWithCartCount',false,{},succeededCallback,failedCallback,userContext); },
+MyCartList:function(succeededCallback, failedCallback, userContext) {
+return this._invoke(this._get_path(), 'MyCartList',false,{},succeededCallback,failedCallback,userContext); },
+MyCartList_Error:function(showError,errorMessage,succeededCallback, failedCallback, userContext) {
+return this._invoke(this._get_path(), 'MyCartList_Error',false,{showError:showError,errorMessage:errorMessage},succeededCallback,failedCallback,userContext); },
+GetProductKitBundleSelector:function(sku,lineTypeIden,configurationIndex,promotionID,revenueSource,headerText,maxSkuQty,labelsArray,succeededCallback, failedCallback, userContext) {
+return this._invoke(this._get_path(), 'GetProductKitBundleSelector',false,{sku:sku,lineTypeIden:lineTypeIden,configurationIndex:configurationIndex,promotionID:promotionID,revenueSource:revenueSource,headerText:headerText,maxSkuQty:maxSkuQty,labelsArray:labelsArray},succeededCallback,failedCallback,userContext); },
+GetProductKitBundleSelectorWithList:function(skuList,maxCount,lineTypeIden,configurationIndex,promotionID,revenueSource,headerText,succeededCallback, failedCallback, userContext) {
+return this._invoke(this._get_path(), 'GetProductKitBundleSelectorWithList',false,{skuList:skuList,maxCount:maxCount,lineTypeIden:lineTypeIden,configurationIndex:configurationIndex,promotionID:promotionID,revenueSource:revenueSource,headerText:headerText},succeededCallback,failedCallback,userContext); },
+GetProductGroupSelector:function(sku,size,succeededCallback, failedCallback, userContext) {
+return this._invoke(this._get_path(), 'GetProductGroupSelector',false,{sku:sku,size:size},succeededCallback,failedCallback,userContext); }}
+Melaleuca.Web.AjaxManager.registerClass('Melaleuca.Web.AjaxManager',Sys.Net.WebServiceProxy);
+Melaleuca.Web.AjaxManager._staticInstance = new Melaleuca.Web.AjaxManager();
+Melaleuca.Web.AjaxManager.set_path = function(value) { Melaleuca.Web.AjaxManager._staticInstance.set_path(value); }
+Melaleuca.Web.AjaxManager.get_path = function() { return Melaleuca.Web.AjaxManager._staticInstance.get_path(); }
+Melaleuca.Web.AjaxManager.set_timeout = function(value) { Melaleuca.Web.AjaxManager._staticInstance.set_timeout(value); }
+Melaleuca.Web.AjaxManager.get_timeout = function() { return Melaleuca.Web.AjaxManager._staticInstance.get_timeout(); }
+Melaleuca.Web.AjaxManager.set_defaultUserContext = function(value) { Melaleuca.Web.AjaxManager._staticInstance.set_defaultUserContext(value); }
+Melaleuca.Web.AjaxManager.get_defaultUserContext = function() { return Melaleuca.Web.AjaxManager._staticInstance.get_defaultUserContext(); }
+Melaleuca.Web.AjaxManager.set_defaultSucceededCallback = function(value) { Melaleuca.Web.AjaxManager._staticInstance.set_defaultSucceededCallback(value); }
+Melaleuca.Web.AjaxManager.get_defaultSucceededCallback = function() { return Melaleuca.Web.AjaxManager._staticInstance.get_defaultSucceededCallback(); }
+Melaleuca.Web.AjaxManager.set_defaultFailedCallback = function(value) { Melaleuca.Web.AjaxManager._staticInstance.set_defaultFailedCallback(value); }
+Melaleuca.Web.AjaxManager.get_defaultFailedCallback = function() { return Melaleuca.Web.AjaxManager._staticInstance.get_defaultFailedCallback(); }
+Melaleuca.Web.AjaxManager.set_enableJsonp = function(value) { Melaleuca.Web.AjaxManager._staticInstance.set_enableJsonp(value); }
+Melaleuca.Web.AjaxManager.get_enableJsonp = function() { return Melaleuca.Web.AjaxManager._staticInstance.get_enableJsonp(); }
+Melaleuca.Web.AjaxManager.set_jsonpCallbackParameter = function(value) { Melaleuca.Web.AjaxManager._staticInstance.set_jsonpCallbackParameter(value); }
+Melaleuca.Web.AjaxManager.get_jsonpCallbackParameter = function() { return Melaleuca.Web.AjaxManager._staticInstance.get_jsonpCallbackParameter(); }
+Melaleuca.Web.AjaxManager.set_path("/Shared/AjaxManager.asmx");
+Melaleuca.Web.AjaxManager.CheckPromotionQualifications= function(onConfirmScript,onCancelScript,onSuccess,onFailed,userContext) {Melaleuca.Web.AjaxManager._staticInstance.CheckPromotionQualifications(onConfirmScript,onCancelScript,onSuccess,onFailed,userContext); }
+Melaleuca.Web.AjaxManager.SetLSDOn= function(sku,onSuccess,onFailed,userContext) {Melaleuca.Web.AjaxManager._staticInstance.SetLSDOn(sku,onSuccess,onFailed,userContext); }
+Melaleuca.Web.AjaxManager.SetLSDOff= function(sku,onSuccess,onFailed,userContext) {Melaleuca.Web.AjaxManager._staticInstance.SetLSDOff(sku,onSuccess,onFailed,userContext); }
+Melaleuca.Web.AjaxManager.SetConvenienceOn= function(sku,onSuccess,onFailed,userContext) {Melaleuca.Web.AjaxManager._staticInstance.SetConvenienceOn(sku,onSuccess,onFailed,userContext); }
+Melaleuca.Web.AjaxManager.SetConvenienceOff= function(sku,onSuccess,onFailed,userContext) {Melaleuca.Web.AjaxManager._staticInstance.SetConvenienceOff(sku,onSuccess,onFailed,userContext); }
+Melaleuca.Web.AjaxManager.EmptyCart= function(onSuccess,onFailed,userContext) {Melaleuca.Web.AjaxManager._staticInstance.EmptyCart(onSuccess,onFailed,userContext); }
+Melaleuca.Web.AjaxManager.GetBOGOOfferAddedRenderedJavaScript= function(responseHTML,onSuccess,onFailed,userContext) {Melaleuca.Web.AjaxManager._staticInstance.GetBOGOOfferAddedRenderedJavaScript(responseHTML,onSuccess,onFailed,userContext); }
+Melaleuca.Web.AjaxManager.GetBOGOMaxQtyInCartControlRefreshJavaScript= function(promotionID,sku,maxQty,onSuccess,onFailed,userContext) {Melaleuca.Web.AjaxManager._staticInstance.GetBOGOMaxQtyInCartControlRefreshJavaScript(promotionID,sku,maxQty,onSuccess,onFailed,userContext); }
+Melaleuca.Web.AjaxManager.UpdateBogoItemStateInCartAndUI= function(sku,promotionID,qty,promotions,onSuccess,onFailed,userContext) {Melaleuca.Web.AjaxManager._staticInstance.UpdateBogoItemStateInCartAndUI(sku,promotionID,qty,promotions,onSuccess,onFailed,userContext); }
+Melaleuca.Web.AjaxManager.PurchaseBusinessKit= function(businessKitSku,onSuccess,onFailed,userContext) {Melaleuca.Web.AjaxManager._staticInstance.PurchaseBusinessKit(businessKitSku,onSuccess,onFailed,userContext); }
+Melaleuca.Web.AjaxManager.UpdateBusinessKit= function(businessKitSku,onSuccess,onFailed,userContext) {Melaleuca.Web.AjaxManager._staticInstance.UpdateBusinessKit(businessKitSku,onSuccess,onFailed,userContext); }
+Melaleuca.Web.AjaxManager.AddOrRemoveSelectedLsdSkuInSession= function(sku,parentSku,isAdd,onSuccess,onFailed,userContext) {Melaleuca.Web.AjaxManager._staticInstance.AddOrRemoveSelectedLsdSkuInSession(sku,parentSku,isAdd,onSuccess,onFailed,userContext); }
+Melaleuca.Web.AjaxManager.ShipAddress_OnChange= function(addressID,shipMethodDescription,onSuccess,onFailed,userContext) {Melaleuca.Web.AjaxManager._staticInstance.ShipAddress_OnChange(addressID,shipMethodDescription,onSuccess,onFailed,userContext); }
+Melaleuca.Web.AjaxManager.ShipMethod_OnChange= function(addressID,shipMethodDescription,onSuccess,onFailed,userContext) {Melaleuca.Web.AjaxManager._staticInstance.ShipMethod_OnChange(addressID,shipMethodDescription,onSuccess,onFailed,userContext); }
+Melaleuca.Web.AjaxManager.AcceptSubstitution= function(subSku,qty,addSource,originalSku,originalLineTypeId,inNextOrderIden,onSuccess,onFailed,userContext) {Melaleuca.Web.AjaxManager._staticInstance.AcceptSubstitution(subSku,qty,addSource,originalSku,originalLineTypeId,inNextOrderIden,onSuccess,onFailed,userContext); }
+Melaleuca.Web.AjaxManager.AcceptKitSubstitution= function(subSku,configurations,addSource,originalSku,originalLineTypeId,inNextOrderIden,onSuccess,onFailed,userContext) {Melaleuca.Web.AjaxManager._staticInstance.AcceptKitSubstitution(subSku,configurations,addSource,originalSku,originalLineTypeId,inNextOrderIden,onSuccess,onFailed,userContext); }
+Melaleuca.Web.AjaxManager.RemoveNoFly= function(originalSku,originalLineTypeId,inNextOrderIden,onSuccess,onFailed,userContext) {Melaleuca.Web.AjaxManager._staticInstance.RemoveNoFly(originalSku,originalLineTypeId,inNextOrderIden,onSuccess,onFailed,userContext); }
+Melaleuca.Web.AjaxManager.LoadVirtualPayMethod= function(paymethodID,onSuccess,onFailed,userContext) {Melaleuca.Web.AjaxManager._staticInstance.LoadVirtualPayMethod(paymethodID,onSuccess,onFailed,userContext); }
+Melaleuca.Web.AjaxManager.DisplayExtendedPromotion= function(containerID,onSuccess,onFailed,userContext) {Melaleuca.Web.AjaxManager._staticInstance.DisplayExtendedPromotion(containerID,onSuccess,onFailed,userContext); }
+Melaleuca.Web.AjaxManager.PopulateCustomerPromotionsInSession= function(onSuccess,onFailed,userContext) {Melaleuca.Web.AjaxManager._staticInstance.PopulateCustomerPromotionsInSession(onSuccess,onFailed,userContext); }
+Melaleuca.Web.AjaxManager.GetAvailablePromotions= function(promotionLocation,onSuccess,onFailed,userContext) {Melaleuca.Web.AjaxManager._staticInstance.GetAvailablePromotions(promotionLocation,onSuccess,onFailed,userContext); }
+Melaleuca.Web.AjaxManager.GetBusinessKitPromotion= function(onSuccess,onFailed,userContext) {Melaleuca.Web.AjaxManager._staticInstance.GetBusinessKitPromotion(onSuccess,onFailed,userContext); }
+Melaleuca.Web.AjaxManager.ProcessBulkPromotionAdd= function(promotionID,bulkObject,refreshMiniCart,onSuccess,onFailed,userContext) {Melaleuca.Web.AjaxManager._staticInstance.ProcessBulkPromotionAdd(promotionID,bulkObject,refreshMiniCart,onSuccess,onFailed,userContext); }
+Melaleuca.Web.AjaxManager.ProcessFlashPromotion= function(promotionID,sku,qty,onSuccess,onFailed,userContext) {Melaleuca.Web.AjaxManager._staticInstance.ProcessFlashPromotion(promotionID,sku,qty,onSuccess,onFailed,userContext); }
+Melaleuca.Web.AjaxManager.ProcessPromotionBySku= function(promotionID,sku,qty,promoAddActionIndex,onSuccess,onFailed,userContext) {Melaleuca.Web.AjaxManager._staticInstance.ProcessPromotionBySku(promotionID,sku,qty,promoAddActionIndex,onSuccess,onFailed,userContext); }
+Melaleuca.Web.AjaxManager.ProcessPromotionForRegularProduct= function(promotionId,sku,qty,promoAddActionIndex,onSuccess,onFailed,userContext) {Melaleuca.Web.AjaxManager._staticInstance.ProcessPromotionForRegularProduct(promotionId,sku,qty,promoAddActionIndex,onSuccess,onFailed,userContext); }
+Melaleuca.Web.AjaxManager.ProcessBogoPromotion= function(promotionId,sku,qty,promoAddActionIndex,promotions,onSuccess,onFailed,userContext) {Melaleuca.Web.AjaxManager._staticInstance.ProcessBogoPromotion(promotionId,sku,qty,promoAddActionIndex,promotions,onSuccess,onFailed,userContext); }
+Melaleuca.Web.AjaxManager.ProcessPromotion= function(promotionId,qty,promoAddActionIndex,revenueSource,afterClickDelegate,onSuccess,onFailed,userContext) {Melaleuca.Web.AjaxManager._staticInstance.ProcessPromotion(promotionId,qty,promoAddActionIndex,revenueSource,afterClickDelegate,onSuccess,onFailed,userContext); }
+Melaleuca.Web.AjaxManager.ProcessKitPromotion= function(promotionId,sku,qty,configurationArray,promoAddActionIndex,promoSource,addSingleKit,onSuccess,onFailed,userContext) {Melaleuca.Web.AjaxManager._staticInstance.ProcessKitPromotion(promotionId,sku,qty,configurationArray,promoAddActionIndex,promoSource,addSingleKit,onSuccess,onFailed,userContext); }
+Melaleuca.Web.AjaxManager.ProcessCouponPromotion= function(couponCode,displayLocationUrl,onSuccess,onFailed,userContext) {Melaleuca.Web.AjaxManager._staticInstance.ProcessCouponPromotion(couponCode,displayLocationUrl,onSuccess,onFailed,userContext); }
+Melaleuca.Web.AjaxManager.ProcessCouponPromotionWithAddSource= function(couponCode,displayLocationUrl,addSource,onSuccess,onFailed,userContext) {Melaleuca.Web.AjaxManager._staticInstance.ProcessCouponPromotionWithAddSource(couponCode,displayLocationUrl,addSource,onSuccess,onFailed,userContext); }
+Melaleuca.Web.AjaxManager.ProcessExternalCouponPromotion= function(couponCode,displayLocationUrl,onSuccess,onFailed,userContext) {Melaleuca.Web.AjaxManager._staticInstance.ProcessExternalCouponPromotion(couponCode,displayLocationUrl,onSuccess,onFailed,userContext); }
+Melaleuca.Web.AjaxManager.RemovePromotion= function(promotionId,redirectToCheckout,onSuccess,onFailed,userContext) {Melaleuca.Web.AjaxManager._staticInstance.RemovePromotion(promotionId,redirectToCheckout,onSuccess,onFailed,userContext); }
+Melaleuca.Web.AjaxManager.DeclinePromotionFromWebButton= function(promotionId,redirectToCheckout,onSuccess,onFailed,userContext) {Melaleuca.Web.AjaxManager._staticInstance.DeclinePromotionFromWebButton(promotionId,redirectToCheckout,onSuccess,onFailed,userContext); }
+Melaleuca.Web.AjaxManager.RemovePromotions= function(promotionIDs,onSuccess,onFailed,userContext) {Melaleuca.Web.AjaxManager._staticInstance.RemovePromotions(promotionIDs,onSuccess,onFailed,userContext); }
+Melaleuca.Web.AjaxManager.RemoveAvailablePromotions= function(promotionIDs,promotionLocation,onSuccess,onFailed,userContext) {Melaleuca.Web.AjaxManager._staticInstance.RemoveAvailablePromotions(promotionIDs,promotionLocation,onSuccess,onFailed,userContext); }
+Melaleuca.Web.AjaxManager.MyFavoriteList= function(onSuccess,onFailed,userContext) {Melaleuca.Web.AjaxManager._staticInstance.MyFavoriteList(onSuccess,onFailed,userContext); }
+Melaleuca.Web.AjaxManager.RemoveFromFavorites= function(sku,onSuccess,onFailed,userContext) {Melaleuca.Web.AjaxManager._staticInstance.RemoveFromFavorites(sku,onSuccess,onFailed,userContext); }
+Melaleuca.Web.AjaxManager.AddProductToFavorites= function(sku,onSuccess,onFailed,userContext) {Melaleuca.Web.AjaxManager._staticInstance.AddProductToFavorites(sku,onSuccess,onFailed,userContext); }
+Melaleuca.Web.AjaxManager.GetSelectedOwingBalance= function(orderIDList,balanceContainerID,formID,indexID,selectID,buttonID,onSuccess,onFailed,userContext) {Melaleuca.Web.AjaxManager._staticInstance.GetSelectedOwingBalance(orderIDList,balanceContainerID,formID,indexID,selectID,buttonID,onSuccess,onFailed,userContext); }
+Melaleuca.Web.AjaxManager.ShowAddressLiteSearch= function(screen,containerID,jsObject,parentJsObject,onSuccess,onFailed,userContext) {Melaleuca.Web.AjaxManager._staticInstance.ShowAddressLiteSearch(screen,containerID,jsObject,parentJsObject,onSuccess,onFailed,userContext); }
+Melaleuca.Web.AjaxManager.BankSearchReturn= function(searchString,country,onSuccess,onFailed,userContext) {Melaleuca.Web.AjaxManager._staticInstance.BankSearchReturn(searchString,country,onSuccess,onFailed,userContext); }
+Melaleuca.Web.AjaxManager.LogError= function(message,source,severity,onSuccess,onFailed,userContext) {Melaleuca.Web.AjaxManager._staticInstance.LogError(message,source,severity,onSuccess,onFailed,userContext); }
+Melaleuca.Web.AjaxManager.RevertBackDating= function(redirectUrl,onSuccess,onFailed,userContext) {Melaleuca.Web.AjaxManager._staticInstance.RevertBackDating(redirectUrl,onSuccess,onFailed,userContext); }
+Melaleuca.Web.AjaxManager.UpdateMelelucaEmailAndUsername= function(CustomerID,Email,onSuccess,onFailed,userContext) {Melaleuca.Web.AjaxManager._staticInstance.UpdateMelelucaEmailAndUsername(CustomerID,Email,onSuccess,onFailed,userContext); }
+Melaleuca.Web.AjaxManager.BackDateAction= function(isBackDating,isConfirmed,onSuccess,onFailed,userContext) {Melaleuca.Web.AjaxManager._staticInstance.BackDateAction(isBackDating,isConfirmed,onSuccess,onFailed,userContext); }
+Melaleuca.Web.AjaxManager.ResetBackDatePrompt= function(onSuccess,onFailed,userContext) {Melaleuca.Web.AjaxManager._staticInstance.ResetBackDatePrompt(onSuccess,onFailed,userContext); }
+Melaleuca.Web.AjaxManager.UpgradeHealthCareServiceLevel= function(currentServiceLevel,beneficiaryName,onSuccess,onFailed,userContext) {Melaleuca.Web.AjaxManager._staticInstance.UpgradeHealthCareServiceLevel(currentServiceLevel,beneficiaryName,onSuccess,onFailed,userContext); }
+Melaleuca.Web.AjaxManager.SelectCountryCulture= function(selectedValue,onSuccess,onFailed,userContext) {Melaleuca.Web.AjaxManager._staticInstance.SelectCountryCulture(selectedValue,onSuccess,onFailed,userContext); }
+Melaleuca.Web.AjaxManager.UpdateNotificationContacts= function(newEmail,newMobilePhoneNumber,onSuccess,onFailed,userContext) {Melaleuca.Web.AjaxManager._staticInstance.UpdateNotificationContacts(newEmail,newMobilePhoneNumber,onSuccess,onFailed,userContext); }
+Melaleuca.Web.AjaxManager.SendVflChallengeEmail= function(onSuccess,onFailed,userContext) {Melaleuca.Web.AjaxManager._staticInstance.SendVflChallengeEmail(onSuccess,onFailed,userContext); }
+Melaleuca.Web.AjaxManager.ProcessContentForm= function(paramList,onSuccess,onFailed,userContext) {Melaleuca.Web.AjaxManager._staticInstance.ProcessContentForm(paramList,onSuccess,onFailed,userContext); }
+Melaleuca.Web.AjaxManager.DisplayContent= function(pageName,displayLocation,displayContainerName,includePromotions,onSuccess,onFailed,userContext) {Melaleuca.Web.AjaxManager._staticInstance.DisplayContent(pageName,displayLocation,displayContainerName,includePromotions,onSuccess,onFailed,userContext); }
+Melaleuca.Web.AjaxManager.GetContentPage= function(pageName,onSuccess,onFailed,userContext) {Melaleuca.Web.AjaxManager._staticInstance.GetContentPage(pageName,onSuccess,onFailed,userContext); }
+Melaleuca.Web.AjaxManager.DisplayPromotionContentByID= function(promoID,location,displayContainerName,promoLocation,updatePromotionViewed,onSuccess,onFailed,userContext) {Melaleuca.Web.AjaxManager._staticInstance.DisplayPromotionContentByID(promoID,location,displayContainerName,promoLocation,updatePromotionViewed,onSuccess,onFailed,userContext); }
+Melaleuca.Web.AjaxManager.DisplayAutoAcceptancePromotionContentById= function(promoID,location,displayContainerName,promoLocation,updatePromotionViewed,onSuccess,onFailed,userContext) {Melaleuca.Web.AjaxManager._staticInstance.DisplayAutoAcceptancePromotionContentById(promoID,location,displayContainerName,promoLocation,updatePromotionViewed,onSuccess,onFailed,userContext); }
+Melaleuca.Web.AjaxManager.GetSurveyScript= function(onSuccess,onFailed,userContext) {Melaleuca.Web.AjaxManager._staticInstance.GetSurveyScript(onSuccess,onFailed,userContext); }
+Melaleuca.Web.AjaxManager.RequestPasswordReset= function(username,onSuccess,onFailed,userContext) {Melaleuca.Web.AjaxManager._staticInstance.RequestPasswordReset(username,onSuccess,onFailed,userContext); }
+Melaleuca.Web.AjaxManager.RequestUsername= function(email,onSuccess,onFailed,userContext) {Melaleuca.Web.AjaxManager._staticInstance.RequestUsername(email,onSuccess,onFailed,userContext); }
+Melaleuca.Web.AjaxManager.RequestUsernameByBusinessPhone= function(email,businessPhone,onSuccess,onFailed,userContext) {Melaleuca.Web.AjaxManager._staticInstance.RequestUsernameByBusinessPhone(email,businessPhone,onSuccess,onFailed,userContext); }
+Melaleuca.Web.AjaxManager.RequestPassword= function(email,onSuccess,onFailed,userContext) {Melaleuca.Web.AjaxManager._staticInstance.RequestPassword(email,onSuccess,onFailed,userContext); }
+Melaleuca.Web.AjaxManager.CanPersonViewVideo= function(videoId,emailAddress,onSuccess,onFailed,userContext) {Melaleuca.Web.AjaxManager._staticInstance.CanPersonViewVideo(videoId,emailAddress,onSuccess,onFailed,userContext); }
+Melaleuca.Web.AjaxManager.ProcessFollowUp= function(enrollee,followUpAction,onSuccess,onFailed,userContext) {Melaleuca.Web.AjaxManager._staticInstance.ProcessFollowUp(enrollee,followUpAction,onSuccess,onFailed,userContext); }
+Melaleuca.Web.AjaxManager.SendPrimerContactoEmailLead= function(onSuccess,onFailed,userContext) {Melaleuca.Web.AjaxManager._staticInstance.SendPrimerContactoEmailLead(onSuccess,onFailed,userContext); }
+Melaleuca.Web.AjaxManager.CreateOnlineAccount= function(phoneNumber,emailAddress,ipAddress,onSuccess,onFailed,userContext) {Melaleuca.Web.AjaxManager._staticInstance.CreateOnlineAccount(phoneNumber,emailAddress,ipAddress,onSuccess,onFailed,userContext); }
+Melaleuca.Web.AjaxManager.ValidateAndSavePasswordRequest= function(gid,newPassword,confirmPassword,onSuccess,onFailed,userContext) {Melaleuca.Web.AjaxManager._staticInstance.ValidateAndSavePasswordRequest(gid,newPassword,confirmPassword,onSuccess,onFailed,userContext); }
+Melaleuca.Web.AjaxManager.FindContact= function(PhoneNumber,LastName,IsOrgSearch,TeamID,onSuccess,onFailed,userContext) {Melaleuca.Web.AjaxManager._staticInstance.FindContact(PhoneNumber,LastName,IsOrgSearch,TeamID,onSuccess,onFailed,userContext); }
+Melaleuca.Web.AjaxManager.FindContact2= function(PhoneNumber,IsOrgSearch,Parameter1,onSuccess,onFailed,userContext) {Melaleuca.Web.AjaxManager._staticInstance.FindContact2(PhoneNumber,IsOrgSearch,Parameter1,onSuccess,onFailed,userContext); }
+Melaleuca.Web.AjaxManager.FindContact_AllowSelf= function(PhoneNumber,IsOrgSearch,Parameter1,onSuccess,onFailed,userContext) {Melaleuca.Web.AjaxManager._staticInstance.FindContact_AllowSelf(PhoneNumber,IsOrgSearch,Parameter1,onSuccess,onFailed,userContext); }
+Melaleuca.Web.AjaxManager.SendCheer= function(CustomerID,CustomerName,cheerMessage,onSuccess,onFailed,userContext) {Melaleuca.Web.AjaxManager._staticInstance.SendCheer(CustomerID,CustomerName,cheerMessage,onSuccess,onFailed,userContext); }
+Melaleuca.Web.AjaxManager.DeleteCheer= function(customerID,cheerID,onSuccess,onFailed,userContext) {Melaleuca.Web.AjaxManager._staticInstance.DeleteCheer(customerID,cheerID,onSuccess,onFailed,userContext); }
+Melaleuca.Web.AjaxManager.GetNECContent= function(ManagerCustomerID,LevelNumber,onSuccess,onFailed,userContext) {Melaleuca.Web.AjaxManager._staticInstance.GetNECContent(ManagerCustomerID,LevelNumber,onSuccess,onFailed,userContext); }
+Melaleuca.Web.AjaxManager.ValidateSwap= function(CustomerID,onSuccess,onFailed,userContext) {Melaleuca.Web.AjaxManager._staticInstance.ValidateSwap(CustomerID,onSuccess,onFailed,userContext); }
+Melaleuca.Web.AjaxManager.ValidateCustomer= function(CustomerID,onSuccess,onFailed,userContext) {Melaleuca.Web.AjaxManager._staticInstance.ValidateCustomer(CustomerID,onSuccess,onFailed,userContext); }
+Melaleuca.Web.AjaxManager.ValidateSwapRules= function(SwapACustomerID,SwapBCustomerID,amountToCharge,onSuccess,onFailed,userContext) {Melaleuca.Web.AjaxManager._staticInstance.ValidateSwapRules(SwapACustomerID,SwapBCustomerID,amountToCharge,onSuccess,onFailed,userContext); }
+Melaleuca.Web.AjaxManager.ValidateMoveTarget= function(moveUnderCustomerID,customerIDToMove,amountToCharge,onSuccess,onFailed,userContext) {Melaleuca.Web.AjaxManager._staticInstance.ValidateMoveTarget(moveUnderCustomerID,customerIDToMove,amountToCharge,onSuccess,onFailed,userContext); }
+Melaleuca.Web.AjaxManager.AddMoreSubscription= function(onSuccess,onFailed,userContext) {Melaleuca.Web.AjaxManager._staticInstance.AddMoreSubscription(onSuccess,onFailed,userContext); }
+Melaleuca.Web.AjaxManager.ResendEmailDialog= function(activeEnrollmentID,containerID,htmlContainerID,onSuccess,onFailed,userContext) {Melaleuca.Web.AjaxManager._staticInstance.ResendEmailDialog(activeEnrollmentID,containerID,htmlContainerID,onSuccess,onFailed,userContext); }
+Melaleuca.Web.AjaxManager.ResendEmail= function(activeEnrollmentID,email,onSuccess,onFailed,userContext) {Melaleuca.Web.AjaxManager._staticInstance.ResendEmail(activeEnrollmentID,email,onSuccess,onFailed,userContext); }
+Melaleuca.Web.AjaxManager.SetCustomerSearchSelection= function(melaleucaID,couponElementObject_Client,onSuccess,onFailed,userContext) {Melaleuca.Web.AjaxManager._staticInstance.SetCustomerSearchSelection(melaleucaID,couponElementObject_Client,onSuccess,onFailed,userContext); }
+Melaleuca.Web.AjaxManager.RefreshOrderSummary= function(frequency,index,onSuccess,onFailed,userContext) {Melaleuca.Web.AjaxManager._staticInstance.RefreshOrderSummary(frequency,index,onSuccess,onFailed,userContext); }
+Melaleuca.Web.AjaxManager.IsCustomerMinorInAge= function(day,month,year,onSuccess,onFailed,userContext) {Melaleuca.Web.AjaxManager._staticInstance.IsCustomerMinorInAge(day,month,year,onSuccess,onFailed,userContext); }
+Melaleuca.Web.AjaxManager.UpdateFamilyMemberOnBirthdateChange= function(day,month,year,onSuccess,onFailed,userContext) {Melaleuca.Web.AjaxManager._staticInstance.UpdateFamilyMemberOnBirthdateChange(day,month,year,onSuccess,onFailed,userContext); }
+Melaleuca.Web.AjaxManager.RenderPlanSelectorControl= function(memberType,onSuccess,onFailed,userContext) {Melaleuca.Web.AjaxManager._staticInstance.RenderPlanSelectorControl(memberType,onSuccess,onFailed,userContext); }
+Melaleuca.Web.AjaxManager.SetPrimaryLifeLockPlan= function(planType,frequencyType,onSuccess,onFailed,userContext) {Melaleuca.Web.AjaxManager._staticInstance.SetPrimaryLifeLockPlan(planType,frequencyType,onSuccess,onFailed,userContext); }
+Melaleuca.Web.AjaxManager.SetFamilyMemberLifeLockPlan= function(planType,frequencyType,onSuccess,onFailed,userContext) {Melaleuca.Web.AjaxManager._staticInstance.SetFamilyMemberLifeLockPlan(planType,frequencyType,onSuccess,onFailed,userContext); }
+Melaleuca.Web.AjaxManager.SetMobilePhoneNumber= function(mobileNumber,onSuccess,onFailed,userContext) {Melaleuca.Web.AjaxManager._staticInstance.SetMobilePhoneNumber(mobileNumber,onSuccess,onFailed,userContext); }
+Melaleuca.Web.AjaxManager.MobilePhoneNumberOptOut= function(onSuccess,onFailed,userContext) {Melaleuca.Web.AjaxManager._staticInstance.MobilePhoneNumberOptOut(onSuccess,onFailed,userContext); }
+Melaleuca.Web.AjaxManager.ChangeEmailAddress= function(newEmailAddress,confirmedNewEmailAddress,onSuccess,onFailed,userContext) {Melaleuca.Web.AjaxManager._staticInstance.ChangeEmailAddress(newEmailAddress,confirmedNewEmailAddress,onSuccess,onFailed,userContext); }
+Melaleuca.Web.AjaxManager.SendWebSuspendBenefitsRequestEmail= function(onSuccess,onFailed,userContext) {Melaleuca.Web.AjaxManager._staticInstance.SendWebSuspendBenefitsRequestEmail(onSuccess,onFailed,userContext); }
+Melaleuca.Web.AjaxManager.SaveCancelBenefitsDesiredReturnDays= function(requestedDayCount,onSuccess,onFailed,userContext) {Melaleuca.Web.AjaxManager._staticInstance.SaveCancelBenefitsDesiredReturnDays(requestedDayCount,onSuccess,onFailed,userContext); }
+Melaleuca.Web.AjaxManager.SaveCancelBenefitsFeedback= function(questionKey,cancelBenefitsFeedback,onSuccess,onFailed,userContext) {Melaleuca.Web.AjaxManager._staticInstance.SaveCancelBenefitsFeedback(questionKey,cancelBenefitsFeedback,onSuccess,onFailed,userContext); }
+Melaleuca.Web.AjaxManager.RecordCancelFormPrint= function(onSuccess,onFailed,userContext) {Melaleuca.Web.AjaxManager._staticInstance.RecordCancelFormPrint(onSuccess,onFailed,userContext); }
+Melaleuca.Web.AjaxManager.CustomerVerifiedIntentToCancel= function(onSuccess,onFailed,userContext) {Melaleuca.Web.AjaxManager._staticInstance.CustomerVerifiedIntentToCancel(onSuccess,onFailed,userContext); }
+Melaleuca.Web.AjaxManager.CustomerAbandonedCancelProcess= function(onSuccess,onFailed,userContext) {Melaleuca.Web.AjaxManager._staticInstance.CustomerAbandonedCancelProcess(onSuccess,onFailed,userContext); }
+Melaleuca.Web.AjaxManager.CustomerAbandonedCancelProcessForLoyalty= function(onSuccess,onFailed,userContext) {Melaleuca.Web.AjaxManager._staticInstance.CustomerAbandonedCancelProcessForLoyalty(onSuccess,onFailed,userContext); }
+Melaleuca.Web.AjaxManager.CancelPageAlternateSignOnSuccessful= function(onSuccess,onFailed,userContext) {Melaleuca.Web.AjaxManager._staticInstance.CancelPageAlternateSignOnSuccessful(onSuccess,onFailed,userContext); }
+Melaleuca.Web.AjaxManager.CancelPageSignOnSuccessful= function(onSuccess,onFailed,userContext) {Melaleuca.Web.AjaxManager._staticInstance.CancelPageSignOnSuccessful(onSuccess,onFailed,userContext); }
+Melaleuca.Web.AjaxManager.SaveCancelBenefitsSupplementalData= function(suppplementalData,onSuccess,onFailed,userContext) {Melaleuca.Web.AjaxManager._staticInstance.SaveCancelBenefitsSupplementalData(suppplementalData,onSuccess,onFailed,userContext); }
+Melaleuca.Web.AjaxManager.GetCancelBenefitsSupplementalData= function(onSuccess,onFailed,userContext) {Melaleuca.Web.AjaxManager._staticInstance.GetCancelBenefitsSupplementalData(onSuccess,onFailed,userContext); }
+Melaleuca.Web.AjaxManager.AddNewCustomerCancelFeedbackWeb= function(onSuccess,onFailed,userContext) {Melaleuca.Web.AjaxManager._staticInstance.AddNewCustomerCancelFeedbackWeb(onSuccess,onFailed,userContext); }
+Melaleuca.Web.AjaxManager.GetFaqItemsBySubCategoryID= function(id,container,onSuccess,onFailed,userContext) {Melaleuca.Web.AjaxManager._staticInstance.GetFaqItemsBySubCategoryID(id,container,onSuccess,onFailed,userContext); }
+Melaleuca.Web.AjaxManager.RenderCouponControl= function(isReminderDateSet,HasCoupons,onSuccess,onFailed,userContext) {Melaleuca.Web.AjaxManager._staticInstance.RenderCouponControl(isReminderDateSet,HasCoupons,onSuccess,onFailed,userContext); }
+Melaleuca.Web.AjaxManager.DefaultMediaListPagination= function(lastPage,isNextPage,uniqueIdentifier,menuPath,onSuccess,onFailed,userContext) {Melaleuca.Web.AjaxManager._staticInstance.DefaultMediaListPagination(lastPage,isNextPage,uniqueIdentifier,menuPath,onSuccess,onFailed,userContext); }
+Melaleuca.Web.AjaxManager.UpdateEmailReminder= function(emailReminderDay,onSuccess,onFailed,userContext) {Melaleuca.Web.AjaxManager._staticInstance.UpdateEmailReminder(emailReminderDay,onSuccess,onFailed,userContext); }
+Melaleuca.Web.AjaxManager.UpdateOrderEmailReminderCouponFlag= function(hasCouponFlag,onSuccess,onFailed,userContext) {Melaleuca.Web.AjaxManager._staticInstance.UpdateOrderEmailReminderCouponFlag(hasCouponFlag,onSuccess,onFailed,userContext); }
+Melaleuca.Web.AjaxManager.DumpToCart= function(promoID,microcosm,onSuccess,onFailed,userContext) {Melaleuca.Web.AjaxManager._staticInstance.DumpToCart(promoID,microcosm,onSuccess,onFailed,userContext); }
+Melaleuca.Web.AjaxManager.CheckUsername= function(username,paramCountry,onSuccess,onFailed,userContext) {Melaleuca.Web.AjaxManager._staticInstance.CheckUsername(username,paramCountry,onSuccess,onFailed,userContext); }
+Melaleuca.Web.AjaxManager.AddOligoStoryRatingByStoryID= function(isHelpful,id,onSuccess,onFailed,userContext) {Melaleuca.Web.AjaxManager._staticInstance.AddOligoStoryRatingByStoryID(isHelpful,id,onSuccess,onFailed,userContext); }
+Melaleuca.Web.AjaxManager.AddProductToCart= function(sku,qty,addSource,originalLineTypeId,onSuccess,onFailed,userContext) {Melaleuca.Web.AjaxManager._staticInstance.AddProductToCart(sku,qty,addSource,originalLineTypeId,onSuccess,onFailed,userContext); }
+Melaleuca.Web.AjaxManager.AddProductToCartWithLsd= function(sku,qty,addSource,originalLineTypeId,onSuccess,onFailed,userContext) {Melaleuca.Web.AjaxManager._staticInstance.AddProductToCartWithLsd(sku,qty,addSource,originalLineTypeId,onSuccess,onFailed,userContext); }
+Melaleuca.Web.AjaxManager.AddProductToCartWithConvenienceCert= function(sku,qty,addSource,originalLineTypeId,onSuccess,onFailed,userContext) {Melaleuca.Web.AjaxManager._staticInstance.AddProductToCartWithConvenienceCert(sku,qty,addSource,originalLineTypeId,onSuccess,onFailed,userContext); }
+Melaleuca.Web.AjaxManager.RenderAddToCartPlaceholders= function(skuList,isCompact,revenueSource,onSuccess,onFailed,userContext) {Melaleuca.Web.AjaxManager._staticInstance.RenderAddToCartPlaceholders(skuList,isCompact,revenueSource,onSuccess,onFailed,userContext); }
+Melaleuca.Web.AjaxManager.AddProductToCartQuickShop= function(sku,qty,isQtyOverride,onSuccess,onFailed,userContext) {Melaleuca.Web.AjaxManager._staticInstance.AddProductToCartQuickShop(sku,qty,isQtyOverride,onSuccess,onFailed,userContext); }
+Melaleuca.Web.AjaxManager.RemoveProductFromCart= function(sku,lineTypeID,inoIden,linkID,onSuccess,onFailed,userContext) {Melaleuca.Web.AjaxManager._staticInstance.RemoveProductFromCart(sku,lineTypeID,inoIden,linkID,onSuccess,onFailed,userContext); }
+Melaleuca.Web.AjaxManager.RemoveBogoPromotionFromCart= function(sku,lineTypeIden,configurationIndex,isKit,promotionId,qty,promotions,onSuccess,onFailed,userContext) {Melaleuca.Web.AjaxManager._staticInstance.RemoveBogoPromotionFromCart(sku,lineTypeIden,configurationIndex,isKit,promotionId,qty,promotions,onSuccess,onFailed,userContext); }
+Melaleuca.Web.AjaxManager.RemovePromotionFromCart= function(sku,lineTypeIden,configurationIndex,isKit,onSuccess,onFailed,userContext) {Melaleuca.Web.AjaxManager._staticInstance.RemovePromotionFromCart(sku,lineTypeIden,configurationIndex,isKit,onSuccess,onFailed,userContext); }
+Melaleuca.Web.AjaxManager.RemoveKitConfigFromCart= function(sku,lineTypeIden,configurationIndex,onSuccess,onFailed,userContext) {Melaleuca.Web.AjaxManager._staticInstance.RemoveKitConfigFromCart(sku,lineTypeIden,configurationIndex,onSuccess,onFailed,userContext); }
+Melaleuca.Web.AjaxManager.DuplicateKitConfigFromCart= function(sku,lineTypeIden,configurationIndex,onSuccess,onFailed,userContext) {Melaleuca.Web.AjaxManager._staticInstance.DuplicateKitConfigFromCart(sku,lineTypeIden,configurationIndex,onSuccess,onFailed,userContext); }
+Melaleuca.Web.AjaxManager.AddMultipleKitsToCart= function(sku,source,configurationArray,lineTypeIden,promotionID,onSuccess,onFailed,userContext) {Melaleuca.Web.AjaxManager._staticInstance.AddMultipleKitsToCart(sku,source,configurationArray,lineTypeIden,promotionID,onSuccess,onFailed,userContext); }
+Melaleuca.Web.AjaxManager.AddKitToCart= function(sku,source,configuration,isEdit,lineTypeIden,configurationIndex,promotionID,onSuccess,onFailed,userContext) {Melaleuca.Web.AjaxManager._staticInstance.AddKitToCart(sku,source,configuration,isEdit,lineTypeIden,configurationIndex,promotionID,onSuccess,onFailed,userContext); }
+Melaleuca.Web.AjaxManager.AddProductToCartBySkuList= function(skuList,source,onSuccess,onFailed,userContext) {Melaleuca.Web.AjaxManager._staticInstance.AddProductToCartBySkuList(skuList,source,onSuccess,onFailed,userContext); }
+Melaleuca.Web.AjaxManager.AddProductBundleToCart= function(skuList,parentKitSku,source,lineTypeIden,promotionID,onSuccess,onFailed,userContext) {Melaleuca.Web.AjaxManager._staticInstance.AddProductBundleToCart(skuList,parentKitSku,source,lineTypeIden,promotionID,onSuccess,onFailed,userContext); }
+Melaleuca.Web.AjaxManager.UpdateProductsInCartBySkuList= function(skuList,source,overrideQty,promotionID,onSuccess,onFailed,userContext) {Melaleuca.Web.AjaxManager._staticInstance.UpdateProductsInCartBySkuList(skuList,source,overrideQty,promotionID,onSuccess,onFailed,userContext); }
+Melaleuca.Web.AjaxManager.AddLSDPromoToCart= function(skuListRemove,skuListAdd,pageName,onSuccess,onFailed,userContext) {Melaleuca.Web.AjaxManager._staticInstance.AddLSDPromoToCart(skuListRemove,skuListAdd,pageName,onSuccess,onFailed,userContext); }
+Melaleuca.Web.AjaxManager.AddLSDPromoSku= function(skuList,onSuccess,onFailed,userContext) {Melaleuca.Web.AjaxManager._staticInstance.AddLSDPromoSku(skuList,onSuccess,onFailed,userContext); }
+Melaleuca.Web.AjaxManager.GetCartCount= function(onSuccess,onFailed,userContext) {Melaleuca.Web.AjaxManager._staticInstance.GetCartCount(onSuccess,onFailed,userContext); }
+Melaleuca.Web.AjaxManager.MyCartListWithCartCount= function(onSuccess,onFailed,userContext) {Melaleuca.Web.AjaxManager._staticInstance.MyCartListWithCartCount(onSuccess,onFailed,userContext); }
+Melaleuca.Web.AjaxManager.MyCartList= function(onSuccess,onFailed,userContext) {Melaleuca.Web.AjaxManager._staticInstance.MyCartList(onSuccess,onFailed,userContext); }
+Melaleuca.Web.AjaxManager.MyCartList_Error= function(showError,errorMessage,onSuccess,onFailed,userContext) {Melaleuca.Web.AjaxManager._staticInstance.MyCartList_Error(showError,errorMessage,onSuccess,onFailed,userContext); }
+Melaleuca.Web.AjaxManager.GetProductKitBundleSelector= function(sku,lineTypeIden,configurationIndex,promotionID,revenueSource,headerText,maxSkuQty,labelsArray,onSuccess,onFailed,userContext) {Melaleuca.Web.AjaxManager._staticInstance.GetProductKitBundleSelector(sku,lineTypeIden,configurationIndex,promotionID,revenueSource,headerText,maxSkuQty,labelsArray,onSuccess,onFailed,userContext); }
+Melaleuca.Web.AjaxManager.GetProductKitBundleSelectorWithList= function(skuList,maxCount,lineTypeIden,configurationIndex,promotionID,revenueSource,headerText,onSuccess,onFailed,userContext) {Melaleuca.Web.AjaxManager._staticInstance.GetProductKitBundleSelectorWithList(skuList,maxCount,lineTypeIden,configurationIndex,promotionID,revenueSource,headerText,onSuccess,onFailed,userContext); }
+Melaleuca.Web.AjaxManager.GetProductGroupSelector= function(sku,size,onSuccess,onFailed,userContext) {Melaleuca.Web.AjaxManager._staticInstance.GetProductGroupSelector(sku,size,onSuccess,onFailed,userContext); }
+var gtc = Sys.Net.WebServiceProxy._generateTypedConstructor;
+if (typeof(Melaleuca.Web.AjaxCartActionResponse) === 'undefined') {
+Melaleuca.Web.AjaxCartActionResponse=gtc("Melaleuca.Web.AjaxCartActionResponse");
+Melaleuca.Web.AjaxCartActionResponse.registerClass('Melaleuca.Web.AjaxCartActionResponse');
+}
+if (typeof(Melaleuca.Web.BogoScriptReturn) === 'undefined') {
+Melaleuca.Web.BogoScriptReturn=gtc("Melaleuca.Web.BogoScriptReturn");
+Melaleuca.Web.BogoScriptReturn.registerClass('Melaleuca.Web.BogoScriptReturn');
+}
+Type.registerNamespace('Melaleuca.CustomerObject');
+if (typeof(Melaleuca.CustomerObject.ValidationMessage) === 'undefined') {
+Melaleuca.CustomerObject.ValidationMessage=gtc("Melaleuca.CustomerObject.ValidationMessage");
+Melaleuca.CustomerObject.ValidationMessage.registerClass('Melaleuca.CustomerObject.ValidationMessage');
+}
+Type.registerNamespace('Melaleuca.Web.ProductStore.Classes');
+if (typeof(Melaleuca.Web.ProductStore.Classes.PromotionMobile) === 'undefined') {
+Melaleuca.Web.ProductStore.Classes.PromotionMobile=gtc("Melaleuca.Web.ProductStore.Classes.PromotionMobile");
+Melaleuca.Web.ProductStore.Classes.PromotionMobile.registerClass('Melaleuca.Web.ProductStore.Classes.PromotionMobile');
+}
+if (typeof(Melaleuca.Web.ProductStore.Classes.PromotionMobileDisplay) === 'undefined') {
+Melaleuca.Web.ProductStore.Classes.PromotionMobileDisplay=gtc("Melaleuca.Web.ProductStore.Classes.PromotionMobileDisplay");
+Melaleuca.Web.ProductStore.Classes.PromotionMobileDisplay.registerClass('Melaleuca.Web.ProductStore.Classes.PromotionMobileDisplay');
+}
+if (typeof(Melaleuca.Web.CartWithQuantityResponse) === 'undefined') {
+Melaleuca.Web.CartWithQuantityResponse=gtc("Melaleuca.Web.CartWithQuantityResponse");
+Melaleuca.Web.CartWithQuantityResponse.registerClass('Melaleuca.Web.CartWithQuantityResponse');
+}
+if (typeof(Melaleuca.Web.AjaxOwingBalance) === 'undefined') {
+Melaleuca.Web.AjaxOwingBalance=gtc("Melaleuca.Web.AjaxOwingBalance");
+Melaleuca.Web.AjaxOwingBalance.registerClass('Melaleuca.Web.AjaxOwingBalance');
+}
+Type.registerNamespace('Melaleuca.BusinessClients.Web.CustomerAccount');
+if (typeof(Melaleuca.BusinessClients.Web.CustomerAccount.BankSummary) === 'undefined') {
+Melaleuca.BusinessClients.Web.CustomerAccount.BankSummary=gtc("Melaleuca.BusinessClients.Web.CustomerAccount.BankSummary");
+Melaleuca.BusinessClients.Web.CustomerAccount.BankSummary.registerClass('Melaleuca.BusinessClients.Web.CustomerAccount.BankSummary');
+}
+if (typeof(Melaleuca.Web.BackDateResponse) === 'undefined') {
+Melaleuca.Web.BackDateResponse=gtc("Melaleuca.Web.BackDateResponse");
+Melaleuca.Web.BackDateResponse.registerClass('Melaleuca.Web.BackDateResponse');
+}
+if (typeof(Melaleuca.Web.NotificationAlertContactResponse) === 'undefined') {
+Melaleuca.Web.NotificationAlertContactResponse=gtc("Melaleuca.Web.NotificationAlertContactResponse");
+Melaleuca.Web.NotificationAlertContactResponse.registerClass('Melaleuca.Web.NotificationAlertContactResponse');
+}
+if (typeof(Melaleuca.Web.HtmlResponse) === 'undefined') {
+Melaleuca.Web.HtmlResponse=gtc("Melaleuca.Web.HtmlResponse");
+Melaleuca.Web.HtmlResponse.registerClass('Melaleuca.Web.HtmlResponse');
+}
+if (typeof(Melaleuca.BusinessClients.Web.CustomerAccount.PasswordRequestResponse) === 'undefined') {
+Melaleuca.BusinessClients.Web.CustomerAccount.PasswordRequestResponse=gtc("Melaleuca.BusinessClients.Web.CustomerAccount.PasswordRequestResponse");
+Melaleuca.BusinessClients.Web.CustomerAccount.PasswordRequestResponse.registerClass('Melaleuca.BusinessClients.Web.CustomerAccount.PasswordRequestResponse');
+}
+Type.registerNamespace('Melaleuca.CustomerObject.Web.FollowUp');
+if (typeof(Melaleuca.CustomerObject.Web.FollowUp.Enrollee) === 'undefined') {
+Melaleuca.CustomerObject.Web.FollowUp.Enrollee=gtc("Melaleuca.CustomerObject.Web.FollowUp.Enrollee");
+Melaleuca.CustomerObject.Web.FollowUp.Enrollee.registerClass('Melaleuca.CustomerObject.Web.FollowUp.Enrollee');
+}
+Type.registerNamespace('Melaleuca.Web.MyAccount.Classes');
+if (typeof(Melaleuca.Web.MyAccount.Classes.CreateAccountResponse) === 'undefined') {
+Melaleuca.Web.MyAccount.Classes.CreateAccountResponse=gtc("Melaleuca.Web.MyAccount.Classes.CreateAccountResponse");
+Melaleuca.Web.MyAccount.Classes.CreateAccountResponse.registerClass('Melaleuca.Web.MyAccount.Classes.CreateAccountResponse');
+}
+Type.registerNamespace('Melaleuca.Web.BusinessCenter.Classes.Ajax');
+if (typeof(Melaleuca.Web.BusinessCenter.Classes.Ajax.AjaxResponse) === 'undefined') {
+Melaleuca.Web.BusinessCenter.Classes.Ajax.AjaxResponse=gtc("Melaleuca.Web.BusinessCenter.Classes.Ajax.AjaxResponse");
+Melaleuca.Web.BusinessCenter.Classes.Ajax.AjaxResponse.registerClass('Melaleuca.Web.BusinessCenter.Classes.Ajax.AjaxResponse');
+}
+if (typeof(Melaleuca.Web.CustomerSearchSelectionResponse) === 'undefined') {
+Melaleuca.Web.CustomerSearchSelectionResponse=gtc("Melaleuca.Web.CustomerSearchSelectionResponse");
+Melaleuca.Web.CustomerSearchSelectionResponse.registerClass('Melaleuca.Web.CustomerSearchSelectionResponse');
+}
+if (typeof(Melaleuca.Web.LifeLockAJAXResponse) === 'undefined') {
+Melaleuca.Web.LifeLockAJAXResponse=gtc("Melaleuca.Web.LifeLockAJAXResponse");
+Melaleuca.Web.LifeLockAJAXResponse.registerClass('Melaleuca.Web.LifeLockAJAXResponse');
+}
+if (typeof(Melaleuca.Web.LifeLockAjaxUpdateMemberResponse) === 'undefined') {
+Melaleuca.Web.LifeLockAjaxUpdateMemberResponse=gtc("Melaleuca.Web.LifeLockAjaxUpdateMemberResponse");
+Melaleuca.Web.LifeLockAjaxUpdateMemberResponse.registerClass('Melaleuca.Web.LifeLockAjaxUpdateMemberResponse');
+}
+if (typeof(Melaleuca.Web.AjaxFAQ) === 'undefined') {
+Melaleuca.Web.AjaxFAQ=gtc("Melaleuca.Web.AjaxFAQ");
+Melaleuca.Web.AjaxFAQ.registerClass('Melaleuca.Web.AjaxFAQ');
+}
+Type.registerNamespace('Melaleuca.Web.MyMelaleuca.Classes.Ajax');
+if (typeof(Melaleuca.Web.MyMelaleuca.Classes.Ajax.MediaListDisplayResponse) === 'undefined') {
+Melaleuca.Web.MyMelaleuca.Classes.Ajax.MediaListDisplayResponse=gtc("Melaleuca.Web.MyMelaleuca.Classes.Ajax.MediaListDisplayResponse");
+Melaleuca.Web.MyMelaleuca.Classes.Ajax.MediaListDisplayResponse.registerClass('Melaleuca.Web.MyMelaleuca.Classes.Ajax.MediaListDisplayResponse');
+}
+if (typeof(Melaleuca.Web.OrderReminderAJAXResponse) === 'undefined') {
+Melaleuca.Web.OrderReminderAJAXResponse=gtc("Melaleuca.Web.OrderReminderAJAXResponse");
+Melaleuca.Web.OrderReminderAJAXResponse.registerClass('Melaleuca.Web.OrderReminderAJAXResponse');
+}
+if (typeof(Melaleuca.Web.MyCartListReturn) === 'undefined') {
+Melaleuca.Web.MyCartListReturn=gtc("Melaleuca.Web.MyCartListReturn");
+Melaleuca.Web.MyCartListReturn.registerClass('Melaleuca.Web.MyCartListReturn');
+}
+Type.registerNamespace('Promotions.Common');
+if (typeof(Promotions.Common.PromotionLocationType) === 'undefined') {
+Promotions.Common.PromotionLocationType = function() { throw Error.invalidOperation(); }
+Promotions.Common.PromotionLocationType.prototype = {Undefined: 0,BeginOrder: 1,PreviewLineItemChange: 2,LineItemChange: 3,FinishOrder: 4,CustomerLoad: 5,ConfirmProducts: 6,WebProductStoreHome: 7,EnterPayment: 8,OrderTypeChange: 9,ProductStoreFlash: 10,ProductStoreHighlight: 11,MarketPlaceFlash: 12,SubCategoryPageFeature: 13,SubCategoryPageHighlight: 14,PageLoadPopup: 15,PageLoadPopupGeneralWidth: 16,AddToCartPopup: 17,WebCheckout: 18,WelcomePageFlash: 19,ProductStorePromoPage: 20,WebCancellation: 21,WebAfterOrderSurvey: 22,CouponSignup: 23,BusinessKitPrompt: 24,CouponPostRedemption: 25,WebSkyscraper: 26,LifelockAfterWebSignup: 27,PromotionDeclined: 28,MobileCheckout: 29,MobileSkyScraper: 30,LineItemQuantityChange: 31,SearchResults: 32,CouponReminder: 33,GoToCheckout: 34,DiscountedMembershipFee: 35}
+Promotions.Common.PromotionLocationType.registerEnum('Promotions.Common.PromotionLocationType', true);
+}
+Type.registerNamespace('Melaleuca.Framework.GlobalEnums');
+if (typeof(Melaleuca.Framework.GlobalEnums.Country) === 'undefined') {
+Melaleuca.Framework.GlobalEnums.Country = function() { throw Error.invalidOperation(); }
+Melaleuca.Framework.GlobalEnums.Country.prototype = {NotApplicable: 0,UnitedStates: 1,Canada: 2,Taiwan: 3,Japan: 4,MelaVanilla: 5,HongKong: 6,Australia: 7,Korea: 8,System: 9,NewZealand: 10,UnitedKingdom: 11,Ireland: 15,Guatemala: 16,Netherlands: 17,Singapore: 18,China: 19,Jamaica: 20,Bahamas: 21,Macao: 22,PuertoRico: 23,Malaysia: 24,Germany: 25,Mexico: 26,Austria: 27,Hungary: 28,CzechRepublic: 29,Poland: 30,Spain: 31,Lithuania: 32,Latvia: 33,Estonia: 34}
+Melaleuca.Framework.GlobalEnums.Country.registerEnum('Melaleuca.Framework.GlobalEnums.Country', true);
+}
+Type.registerNamespace('Melaleuca.Framework.Logging.Common.Data');
+if (typeof(Melaleuca.Framework.Logging.Common.Data.Severity) === 'undefined') {
+Melaleuca.Framework.Logging.Common.Data.Severity = function() { throw Error.invalidOperation(); }
+Melaleuca.Framework.Logging.Common.Data.Severity.prototype = {CriticalError: 1,Warning: 2,Information: 3}
+Melaleuca.Framework.Logging.Common.Data.Severity.registerEnum('Melaleuca.Framework.Logging.Common.Data.Severity', true);
+}
+Type.registerNamespace('Content.Common');
+if (typeof(Content.Common.ContentDisplayLocation) === 'undefined') {
+Content.Common.ContentDisplayLocation = function() { throw Error.invalidOperation(); }
+Content.Common.ContentDisplayLocation.prototype = {Page: 0,Popup: 1,PopupFullWidth: 2}
+Content.Common.ContentDisplayLocation.registerEnum('Content.Common.ContentDisplayLocation', true);
+}
+if (typeof(Melaleuca.CustomerObject.Web.FollowUp.FollowUpAction) === 'undefined') {
+Melaleuca.CustomerObject.Web.FollowUp.FollowUpAction = function() { throw Error.invalidOperation(); }
+Melaleuca.CustomerObject.Web.FollowUp.FollowUpAction.prototype = {MadeContact: 0,HelpedCustomerShop: 1,AnsweredQuestions: 2}
+Melaleuca.CustomerObject.Web.FollowUp.FollowUpAction.registerEnum('Melaleuca.CustomerObject.Web.FollowUp.FollowUpAction', true);
+}
+if (typeof(Melaleuca.Framework.GlobalEnums.OrderLineType) === 'undefined') {
+Melaleuca.Framework.GlobalEnums.OrderLineType = function() { throw Error.invalidOperation(); }
+Melaleuca.Framework.GlobalEnums.OrderLineType.prototype = {Undefined: 0,Normal: 1,CreditOnAccount: 2,AdvantageDollar: 3,Insert: 4,SystemLineAdjustment: 5,Reship: 6,Freight: 7,GoodWill: 8,AdvantageTaxes: 9,AdvantageFreight: 10,Certificates: 11,Free: 12,ReshipNormal: 13,ReshipCOA: 14,ReshipAdvantage: 15,ReshipGoodWill: 16,ReshipCertificates: 17,MissingProduct: 18,Adjustment: 19,ReshipMissing: 20,ReshipAdjustment: 21,FinanceLoyaltyDollars: 22,FinanceConvenienceCertificates: 23,FinanceRedemptions: 24,FinanceEmployeeRedemption: 25,FactoryStore: 26,FactoryStoreLoyaltyDollars: 27,FactoryStoreCertificates: 28,Promotion: 29,ProductExchange: 30}
+Melaleuca.Framework.GlobalEnums.OrderLineType.registerEnum('Melaleuca.Framework.GlobalEnums.OrderLineType', true);
+}
